@@ -5,9 +5,11 @@ namespace BussinessObject.Models;
 
 public partial class Material
 {
-    public int MaterialId { get; set; }
+    public string MaterialId { get; set; } = null!;
 
-    public string? MaterialName { get; set; }
+    public string? Name { get; set; }
 
-    public virtual ICollection<NewProduct> NewProducts { get; set; } = new List<NewProduct>();
+    public double? Price { get; set; }
+
+    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }
