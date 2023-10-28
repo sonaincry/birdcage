@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NLtw+K/sly8NNrBnpumrjJ4zbCLeo6FeDNQc6jmpFhxg7IYlog/m2eX6OD+tDG57yDhQlm/U9fd6tifafl6oKg==",
+  "dgSpecHash": "oPHfFkmBhwGF5zXjNUZBXUFg4R1igeE6/HUh2aEwebYExnCr/Lkt2F511kq8BKzgg+mIVHtlEYfyPghA0PWmbQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Son\\Desktop\\C#\\BirdCageManagement\\Repositories\\Repositories.csproj",
+  "projectFilePath": "C:\\Users\\Son\\Desktop\\Assignment_PRN211\\birdcage\\Repositories\\Repositories.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Son\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Son\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

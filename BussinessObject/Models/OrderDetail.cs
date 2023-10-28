@@ -5,15 +5,17 @@ namespace BussinessObject.Models;
 
 public partial class OrderDetail
 {
-    public int DetailId { get; set; }
+    public string OrderDetailId { get; set; } = null!;
 
-    public int? OrderId { get; set; }
+    public string? ProductId { get; set; }
 
-    public int? Pid { get; set; }
+    public string? OrderId { get; set; }
 
     public int? Quantity { get; set; }
 
+    public int? Price { get; set; }
+
     public virtual Order? Order { get; set; }
 
-    public virtual Product? PidNavigation { get; set; }
+    public virtual Product? Product { get; set; }
 }

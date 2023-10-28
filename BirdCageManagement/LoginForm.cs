@@ -5,37 +5,50 @@ namespace BirdCageManagement
 {
     public partial class LoginForm : Form
     {
-        private IAccountService accountService;
+        private IUserService userService;
         public LoginForm()
         {
             InitializeComponent();
-            accountService = new AccountService();
+            userService = new UserService();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            Account account = accountService.getAccountByEmailAndPassword(txtUsername.Text, txtPassword.Text);
-            if (account != null && account.Role == 1)
+            User user = userService.GetUserByEmailAndPassword(txtUsername.Text, txtPassword.Text);
+            if (user != null)
             {
-                BirdCageManagement bc = new BirdCageManagement();
-                bc.ShowDialog();
-                this.Hide();
-            }
-            if(account !=null && account.Role == 0)
-            {
-                BirdCageManagement bc = new BirdCageManagement();
-                bc.ShowDialog();
-                this.Hide();
+                if (user.Role == 0 || user.Role == 1 || user.Role == 2) //Role Admin && Role Manager && Role Staff  
+                {
+                    BirdCageManagement bc = new BirdCageManagement();
+                    bc.ShowDialog();
+                    this.Hide();
+                }
+                else //Role Customer
+                {
+                    MessageBox.Show("You do not have permission");
+                }
             }
             else
             {
-                MessageBox.Show("Incorrect Password. Please try again!");
+                MessageBox.Show("Incorrect username or password. Please try again!");
             }
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var rf = new RegistrationForm();
+            rf.Show();
+            this.Hide();
         }
     }
 }

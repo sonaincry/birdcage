@@ -4,7 +4,13 @@
     <Compile Update="BirdCageManagement.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="BirdCageShop.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="RegistrationForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
