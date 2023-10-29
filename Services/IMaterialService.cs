@@ -9,4 +9,5 @@ namespace Services;
 public interface IMaterialService
 {
     List<Material> GetMaterials();
+    Material GetMaterialById(string id);
 }
