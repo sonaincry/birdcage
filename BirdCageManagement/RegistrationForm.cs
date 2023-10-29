@@ -30,7 +30,6 @@ public partial class RegistrationForm : Form
             user.Password = txtPassword.Text.Trim();
             string maxUserId = userService.GetMaxUserId();
 
-            // Extract the numeric part of the user ID and increment it
             int currentNumber = int.Parse(maxUserId.Substring(4)); // Assumes "userXX" format
             int newNumber = currentNumber + 1;
 

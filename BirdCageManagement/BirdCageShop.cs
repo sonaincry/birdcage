@@ -41,7 +41,12 @@ public partial class BirdCageShop : Form
 
     private void btnCompare_Click(object sender, EventArgs e)
     {
-        
-        
+
+
+    }
+
+    private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+         
     }
 }
