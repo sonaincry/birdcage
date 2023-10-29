@@ -25,6 +25,11 @@ public class ProductService : IProductService
         productRepository.DeleteProduct(product);
     }
 
+    public string GetMaxProductId()
+    {
+        return productRepository.GetMaxProductId();
+    }
+
     public Product GetProductById(string id)
     {
         return productRepository.GetProductById(id);

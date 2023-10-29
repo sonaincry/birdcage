@@ -140,3 +140,4 @@ C:\Users\Son\Desktop\Assignment_PRN211\birdcage\BirdCageManagement\obj\Debug\net
 C:\Users\Son\Desktop\Assignment_PRN211\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\ref\BirdCageManagement.dll
 C:\Users\Son\Desktop\Assignment_PRN211\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.RegistrationForm.resources
 C:\Users\Son\Desktop\Assignment_PRN211\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.BirdCageShop.resources
+C:\Users\Son\Desktop\Assignment_PRN211\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.OrderCustomProduct.resources

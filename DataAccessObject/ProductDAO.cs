@@ -90,7 +90,29 @@ public class ProductDAO
         }
         catch (Exception ex)
         {
-            throw new Exception("Nothing to delete!");
+            throw new Exception(ex.Message);
+        }   
+    }
+    
+    public string GetMaxProductId()
+    {
+        try
+        {
+            using (var dbContext = new BirdCageShopContext())
+            {
+                var maxProductId = dbContext.Products
+                    .Where(p => p.ProductId.StartsWith("P"))
+                    .OrderByDescending(p => p.ProductId)
+                    .Select(p => p.ProductId)
+                    .FirstOrDefault();
+
+                return maxProductId;
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error while retrieving max user ID: " + ex.Message);
         }
     }
+
 }
