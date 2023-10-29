@@ -36,7 +36,8 @@ public partial class BirdCageShop : Form
 
     private void BirdCageShop_Load(object sender, EventArgs e)
     {
-        dgvProduct.DataSource = productService.GetProducts().Select(c => new { c.Name, c.Price, c.Description, c.Spoke }).ToList();
+        dgvProduct.DataSource = productService.GetProducts().Where(p => p.Status == 1)
+            .Select(c => new { c.Name, c.Price, c.Description, c.Spoke }).ToList();
     }
 
     private void btnCompare_Click(object sender, EventArgs e)
@@ -47,6 +48,15 @@ public partial class BirdCageShop : Form
 
     private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
-         
+        this.Hide();
+        var ocp = new OrderCustomProduct();
+        ocp.Show();
+    }
+
+    private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+        this.Hide();
+        var lg = new LoginForm();
+        lg.Show();
     }
 }

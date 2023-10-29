@@ -9,4 +9,5 @@ namespace Services;
 public interface IAccessoryService
 {
     List<Accessory> GetAccessories();
+    Accessory GetAccessoryById(string id);
 }

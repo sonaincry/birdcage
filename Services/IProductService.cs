@@ -14,4 +14,5 @@ public interface IProductService
     void UpdateProduct(Product product);
     void DeleteProduct(Product product);
     string GetMaxProductId();
+    void UpdatePrice(Product product, double? price);
 }

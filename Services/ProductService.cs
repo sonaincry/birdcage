@@ -40,6 +40,11 @@ public class ProductService : IProductService
         return productRepository.GetProducts();
     }
 
+    public void UpdatePrice(Product product, double? price)
+    {
+        productRepository.UpdatePrice(product, price);
+    }
+
     public void UpdateProduct(Product product)
     {
         productRepository.UpdateProduct(product);

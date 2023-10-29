@@ -19,13 +19,17 @@ namespace BirdCageManagement
             {
                 if (user.Role == 0 || user.Role == 1 || user.Role == 2) //Role Admin && Role Manager && Role Staff  
                 {
+                    this.Hide();
                     BirdCageManagement bc = new BirdCageManagement();
                     bc.ShowDialog();
-                    this.Hide();
+                    
                 }
                 else //Role Customer
                 {
-                    MessageBox.Show("You do not have permission");
+                    this.Hide();
+                    var bc = new BirdCageShop();
+                    bc.ShowDialog();
+                    
                 }
             }
             else

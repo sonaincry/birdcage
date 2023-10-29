@@ -47,115 +47,123 @@
             txtSearch = new TextBox();
             btnSearch = new Button();
             txtSpoke = new TextBox();
+            linkLabel1 = new LinkLabel();
             ((System.ComponentModel.ISupportInitialize)dgvProduct).BeginInit();
             SuspendLayout();
             // 
             // dgvProduct
             // 
             dgvProduct.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProduct.Location = new Point(2, 2);
+            dgvProduct.Location = new Point(3, 22);
+            dgvProduct.Margin = new Padding(3, 2, 3, 2);
             dgvProduct.Name = "dgvProduct";
             dgvProduct.RowHeadersWidth = 51;
             dgvProduct.RowTemplate.Height = 29;
-            dgvProduct.Size = new Size(796, 188);
+            dgvProduct.Size = new Size(696, 141);
             dgvProduct.TabIndex = 0;
             dgvProduct.CellClick += dgvProduct_CellClick;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(2, 213);
+            label1.Location = new Point(2, 187);
             label1.Name = "label1";
-            label1.Size = new Size(27, 20);
+            label1.Size = new Size(21, 15);
             label1.TabIndex = 1;
             label1.Text = "ID:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(328, 272);
+            label2.Location = new Point(287, 226);
             label2.Name = "label2";
-            label2.Size = new Size(52, 20);
+            label2.Size = new Size(42, 15);
             label2.TabIndex = 2;
             label2.Text = "Status:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(2, 279);
+            label3.Location = new Point(2, 228);
             label3.Name = "label3";
-            label3.Size = new Size(52, 20);
+            label3.Size = new Size(42, 15);
             label3.TabIndex = 3;
             label3.Text = "Name:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(328, 213);
+            label4.Location = new Point(287, 187);
             label4.Name = "label4";
-            label4.Size = new Size(88, 20);
+            label4.Size = new Size(70, 15);
             label4.TabIndex = 4;
             label4.Text = "Description:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(2, 341);
+            label5.Location = new Point(2, 274);
             label5.Name = "label5";
-            label5.Size = new Size(44, 20);
+            label5.Size = new Size(36, 15);
             label5.TabIndex = 5;
             label5.Text = "Price:";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(328, 337);
+            label6.Location = new Point(287, 274);
             label6.Name = "label6";
-            label6.Size = new Size(53, 20);
+            label6.Size = new Size(42, 15);
             label6.TabIndex = 6;
             label6.Text = "Spoke:";
             // 
             // txtProductId
             // 
-            txtProductId.Location = new Point(78, 206);
+            txtProductId.Location = new Point(68, 179);
+            txtProductId.Margin = new Padding(3, 2, 3, 2);
             txtProductId.Name = "txtProductId";
-            txtProductId.Size = new Size(190, 27);
+            txtProductId.Size = new Size(167, 23);
             txtProductId.TabIndex = 7;
             // 
             // txtStatus
             // 
-            txtStatus.Location = new Point(422, 265);
+            txtStatus.Location = new Point(369, 223);
+            txtStatus.Margin = new Padding(3, 2, 3, 2);
             txtStatus.Name = "txtStatus";
-            txtStatus.Size = new Size(190, 27);
+            txtStatus.Size = new Size(167, 23);
             txtStatus.TabIndex = 8;
             // 
             // txtProductName
             // 
-            txtProductName.Location = new Point(78, 272);
+            txtProductName.Location = new Point(68, 226);
+            txtProductName.Margin = new Padding(3, 2, 3, 2);
             txtProductName.Name = "txtProductName";
-            txtProductName.Size = new Size(190, 27);
+            txtProductName.Size = new Size(167, 23);
             txtProductName.TabIndex = 9;
             // 
             // txtDescription
             // 
-            txtDescription.Location = new Point(422, 206);
+            txtDescription.Location = new Point(369, 179);
+            txtDescription.Margin = new Padding(3, 2, 3, 2);
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(190, 27);
+            txtDescription.Size = new Size(167, 23);
             txtDescription.TabIndex = 10;
             txtDescription.TextChanged += textBox4_TextChanged;
             // 
             // txtProductPrice
             // 
-            txtProductPrice.Location = new Point(78, 334);
+            txtProductPrice.Location = new Point(68, 266);
+            txtProductPrice.Margin = new Padding(3, 2, 3, 2);
             txtProductPrice.Name = "txtProductPrice";
-            txtProductPrice.Size = new Size(190, 27);
+            txtProductPrice.Size = new Size(167, 23);
             txtProductPrice.TabIndex = 11;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(682, 206);
+            btnAdd.Location = new Point(597, 187);
+            btnAdd.Margin = new Padding(3, 2, 3, 2);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(116, 29);
+            btnAdd.Size = new Size(102, 22);
             btnAdd.TabIndex = 13;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -163,9 +171,10 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(682, 249);
+            btnUpdate.Location = new Point(597, 219);
+            btnUpdate.Margin = new Padding(3, 2, 3, 2);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(116, 29);
+            btnUpdate.Size = new Size(102, 22);
             btnUpdate.TabIndex = 14;
             btnUpdate.Text = "Update";
             btnUpdate.UseVisualStyleBackColor = true;
@@ -173,9 +182,10 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(682, 292);
+            btnDelete.Location = new Point(597, 248);
+            btnDelete.Margin = new Padding(3, 2, 3, 2);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(116, 29);
+            btnDelete.Size = new Size(102, 22);
             btnDelete.TabIndex = 15;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
@@ -183,9 +193,10 @@
             // 
             // btnClose
             // 
-            btnClose.Location = new Point(682, 341);
+            btnClose.Location = new Point(597, 274);
+            btnClose.Margin = new Padding(3, 2, 3, 2);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(116, 29);
+            btnClose.Size = new Size(102, 22);
             btnClose.TabIndex = 16;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = true;
@@ -193,16 +204,18 @@
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(2, 390);
+            txtSearch.Location = new Point(2, 304);
+            txtSearch.Margin = new Padding(3, 2, 3, 2);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(610, 27);
+            txtSearch.Size = new Size(534, 23);
             txtSearch.TabIndex = 17;
             // 
             // btnSearch
             // 
-            btnSearch.Location = new Point(682, 390);
+            btnSearch.Location = new Point(597, 305);
+            btnSearch.Margin = new Padding(3, 2, 3, 2);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(116, 29);
+            btnSearch.Size = new Size(102, 22);
             btnSearch.TabIndex = 18;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = true;
@@ -210,16 +223,29 @@
             // 
             // txtSpoke
             // 
-            txtSpoke.Location = new Point(422, 330);
+            txtSpoke.Location = new Point(369, 266);
+            txtSpoke.Margin = new Padding(3, 2, 3, 2);
             txtSpoke.Name = "txtSpoke";
-            txtSpoke.Size = new Size(190, 27);
+            txtSpoke.Size = new Size(167, 23);
             txtSpoke.TabIndex = 19;
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(639, 5);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(45, 15);
+            linkLabel1.TabIndex = 20;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Logout";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // BirdCageManagement
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(700, 338);
+            Controls.Add(linkLabel1);
             Controls.Add(txtSpoke);
             Controls.Add(btnSearch);
             Controls.Add(txtSearch);
@@ -239,6 +265,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(dgvProduct);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "BirdCageManagement";
             Text = "Product Management";
             Load += BirdCageManagement_Load;
@@ -268,5 +295,6 @@
         private TextBox txtSearch;
         private Button btnSearch;
         private TextBox txtSpoke;
+        private LinkLabel linkLabel1;
     }
 }
