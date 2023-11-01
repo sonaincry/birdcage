@@ -13,6 +13,8 @@ public class ProductRepository : IProductRepository
 
     public void DeleteProduct(Product product) => ProductDAO.Instance.DeleteProduct(product);
 
+    public string GetMaxProductId()=>ProductDAO.Instance.GetMaxProductId();
+
     public Product GetProductById(string id) => ProductDAO.Instance.GetProductById(id);
 
     public List<Product> GetProducts()=>ProductDAO.Instance.GetProducts();

@@ -83,4 +83,9 @@ public partial class BirdCageShop : Form
         CartForm cartForm = new CartForm();
         cartForm.ShowDialog();
     }
+
+    private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+         
+    }
 }

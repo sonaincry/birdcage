@@ -15,6 +15,10 @@ public partial class Order
 
     public int? Status { get; set; }
 
+    public string? Address { get; set; }
+
+    public string? Phone { get; set; }
+
     public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
 
     public virtual User? User { get; set; }

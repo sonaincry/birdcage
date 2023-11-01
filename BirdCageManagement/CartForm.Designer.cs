@@ -42,6 +42,8 @@
             txtPrice = new TextBox();
             label4 = new Label();
             btnCheckout = new Button();
+            txtTotal = new TextBox();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvCart).BeginInit();
             detailsBox.SuspendLayout();
             SuspendLayout();
@@ -191,12 +193,34 @@
             btnCheckout.TabIndex = 11;
             btnCheckout.Text = "Checkout";
             btnCheckout.UseVisualStyleBackColor = true;
+            btnCheckout.Click += btnCheckout_Click;
+            // 
+            // txtTotal
+            // 
+            txtTotal.Location = new Point(712, 415);
+            txtTotal.Margin = new Padding(4);
+            txtTotal.Name = "txtTotal";
+            txtTotal.ReadOnly = true;
+            txtTotal.Size = new Size(194, 31);
+            txtTotal.TabIndex = 13;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(645, 418);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(53, 25);
+            label5.TabIndex = 12;
+            label5.Text = "Total:";
             // 
             // CartForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1147, 471);
+            Controls.Add(txtTotal);
+            Controls.Add(label5);
             Controls.Add(detailsBox);
             Controls.Add(btnCheckout);
             Controls.Add(dgvCart);
@@ -207,6 +231,7 @@
             detailsBox.ResumeLayout(false);
             detailsBox.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -225,5 +250,7 @@
         private Button btnDecrease;
         private Button btnIncrease;
         private TextBox txtQuantity;
+        private TextBox txtTotal;
+        private Label label5;
     }
 }

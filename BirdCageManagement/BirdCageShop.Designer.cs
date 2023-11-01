@@ -38,6 +38,8 @@ partial class BirdCageShop
         txtDescription = new TextBox();
         txtSpoke = new TextBox();
         btnCompare = new Button();
+        label5 = new Label();
+        linkLabel1 = new LinkLabel();
         detailsBox = new GroupBox();
         btnPurchase = new Button();
         btnCart = new Button();
@@ -61,7 +63,7 @@ partial class BirdCageShop
         // label1
         // 
         label1.AutoSize = true;
-        label1.Location = new Point(55, 53);
+        label1.Location = new Point(58, 54);
         label1.Margin = new Padding(4, 0, 4, 0);
         label1.Name = "label1";
         label1.Size = new Size(63, 25);
@@ -71,7 +73,7 @@ partial class BirdCageShop
         // label2
         // 
         label2.AutoSize = true;
-        label2.Location = new Point(55, 115);
+        label2.Location = new Point(58, 116);
         label2.Margin = new Padding(4, 0, 4, 0);
         label2.Name = "label2";
         label2.Size = new Size(53, 25);
@@ -81,7 +83,7 @@ partial class BirdCageShop
         // label3
         // 
         label3.AutoSize = true;
-        label3.Location = new Point(55, 178);
+        label3.Location = new Point(58, 179);
         label3.Margin = new Padding(4, 0, 4, 0);
         label3.Name = "label3";
         label3.Size = new Size(106, 25);
@@ -91,7 +93,7 @@ partial class BirdCageShop
         // label4
         // 
         label4.AutoSize = true;
-        label4.Location = new Point(55, 242);
+        label4.Location = new Point(58, 243);
         label4.Margin = new Padding(4, 0, 4, 0);
         label4.Name = "label4";
         label4.Size = new Size(66, 25);
@@ -101,7 +103,7 @@ partial class BirdCageShop
         // 
         // txtName
         // 
-        txtName.Location = new Point(169, 50);
+        txtName.Location = new Point(172, 51);
         txtName.Margin = new Padding(4);
         txtName.Name = "txtName";
         txtName.ReadOnly = true;
@@ -110,7 +112,7 @@ partial class BirdCageShop
         // 
         // txtPrice
         // 
-        txtPrice.Location = new Point(169, 112);
+        txtPrice.Location = new Point(172, 113);
         txtPrice.Margin = new Padding(4);
         txtPrice.Name = "txtPrice";
         txtPrice.ReadOnly = true;
@@ -119,7 +121,7 @@ partial class BirdCageShop
         // 
         // txtDescription
         // 
-        txtDescription.Location = new Point(169, 175);
+        txtDescription.Location = new Point(172, 176);
         txtDescription.Margin = new Padding(4);
         txtDescription.Name = "txtDescription";
         txtDescription.ReadOnly = true;
@@ -128,7 +130,7 @@ partial class BirdCageShop
         // 
         // txtSpoke
         // 
-        txtSpoke.Location = new Point(169, 239);
+        txtSpoke.Location = new Point(172, 240);
         txtSpoke.Margin = new Padding(4);
         txtSpoke.Name = "txtSpoke";
         txtSpoke.ReadOnly = true;
@@ -137,7 +139,7 @@ partial class BirdCageShop
         // 
         // btnCompare
         // 
-        btnCompare.Location = new Point(232, 311);
+        btnCompare.Location = new Point(235, 312);
         btnCompare.Margin = new Padding(4);
         btnCompare.Name = "btnCompare";
         btnCompare.Size = new Size(118, 36);
@@ -146,18 +148,38 @@ partial class BirdCageShop
         btnCompare.UseVisualStyleBackColor = true;
         btnCompare.Click += btnCompare_Click;
         // 
+        // label5
+        // 
+        label5.AutoSize = true;
+        label5.Location = new Point(785, 421);
+        label5.Name = "label5";
+        label5.Size = new Size(225, 25);
+        label5.TabIndex = 10;
+        label5.Text = "Order your own bird cage?";
+        // 
+        // linkLabel1
+        // 
+        linkLabel1.AutoSize = true;
+        linkLabel1.Location = new Point(1016, 421);
+        linkLabel1.Name = "linkLabel1";
+        linkLabel1.Size = new Size(92, 25);
+        linkLabel1.TabIndex = 11;
+        linkLabel1.TabStop = true;
+        linkLabel1.Text = "Click here!";
+        linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+        // 
         // detailsBox
         // 
         detailsBox.Controls.Add(btnPurchase);
         detailsBox.Controls.Add(txtName);
         detailsBox.Controls.Add(label1);
-        detailsBox.Controls.Add(btnCompare);
-        detailsBox.Controls.Add(txtSpoke);
         detailsBox.Controls.Add(label2);
-        detailsBox.Controls.Add(txtDescription);
+        detailsBox.Controls.Add(btnCompare);
         detailsBox.Controls.Add(label3);
-        detailsBox.Controls.Add(txtPrice);
+        detailsBox.Controls.Add(txtSpoke);
         detailsBox.Controls.Add(label4);
+        detailsBox.Controls.Add(txtDescription);
+        detailsBox.Controls.Add(txtPrice);
         detailsBox.Location = new Point(690, 13);
         detailsBox.Name = "detailsBox";
         detailsBox.Size = new Size(527, 373);
@@ -189,9 +211,11 @@ partial class BirdCageShop
         // 
         AutoScaleDimensions = new SizeF(10F, 25F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(1244, 584);
+        ClientSize = new Size(1286, 584);
         Controls.Add(btnCart);
         Controls.Add(detailsBox);
+        Controls.Add(linkLabel1);
+        Controls.Add(label5);
         Controls.Add(dgvProduct);
         Margin = new Padding(4);
         Name = "BirdCageShop";
@@ -201,6 +225,7 @@ partial class BirdCageShop
         detailsBox.ResumeLayout(false);
         detailsBox.PerformLayout();
         ResumeLayout(false);
+        PerformLayout();
     }
 
     #endregion
@@ -218,4 +243,6 @@ partial class BirdCageShop
     private GroupBox detailsBox;
     private Button btnPurchase;
     private Button btnCart;
+    private Label label5;
+    private LinkLabel linkLabel1;
 }
