@@ -9,5 +9,7 @@ using DataAccessObject;
 namespace Repositories;
 public class MaterialRepository : IMaterialRepository
 {
+    public Material GetMaterialById(string id)=>MaterialDAO.Instance.GetMaterialById(id);
+
     public List<Material> GetMaterials()=>MaterialDAO.Instance.GetMaterials();
 }

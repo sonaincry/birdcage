@@ -9,4 +9,5 @@ namespace Repositories;
 public interface IAccessoryRepository
 {
     List<Accessory> GetAccessories();
+    Accessory GetAccessoryById(string id);
 }

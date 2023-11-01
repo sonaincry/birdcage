@@ -114,5 +114,27 @@ public class ProductDAO
             throw new Exception("Error while retrieving max user ID: " + ex.Message);
         }
     }
-
+    public void UpdatePrice(Product product, double? price)
+    {
+        try
+        {
+            var dbContext = new BirdCageShopContext();
+            if (product != null)
+            {
+                product.ProductId = product.ProductId;
+                product.Name = product.Name;
+                product.Spoke = product.Spoke;
+                product.Price = price;
+                product.Description = product.Description;
+                product.Status = product.Status;
+                dbContext.Update(product);
+                dbContext.SaveChanges();
+            }
+            
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error while retrieving max user ID: " + ex.Message);
+        }
+    }
 }
