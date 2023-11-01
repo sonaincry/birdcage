@@ -24,11 +24,11 @@ namespace DataAccessObject
                 return instance;
             }
         }
-        public User GetUserByEmailAndPassword(String  email, String password)
+        public User GetUserByEmailAndPassword(String email, String password)
         {
             var DbContext = new BirdCageShopContext();
             return DbContext.Users.SingleOrDefault(m => m.Email.Equals(email) && m.Password.Equals(password));
-        
+
         }
         public User GetUserById(string id)
         {
@@ -64,6 +64,45 @@ namespace DataAccessObject
                 throw new Exception(ex.Message);
             }
         }
+        public void UpdateUser(User user)
+        {
+            try
+            {
+                var dbContext = new BirdCageShopContext();
+                if (user != null)
+                {
+                    dbContext.Users.Update(user);
+                    dbContext.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("Nothing to update!");
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public void DeleteUser(User user)
+        {
+            try
+            {
+                var dbContext = new BirdCageShopContext();
+                if (user != null)
+                {
+                    dbContext.Users.Remove(user);
+                    dbContext.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public string GetMaxUserId()
         {
             try
@@ -81,8 +120,21 @@ namespace DataAccessObject
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while retrieving max user ID: " + ex.Message);
+                throw new Exception(ex.Message);
             }
+        }
+        public bool IsEmailExist(string email)
+        {
+            using (var dbContext = new BirdCageShopContext())
+            {
+                bool existEmail = dbContext.Users.Any(u => u.Email == email);
+                return existEmail;
+            }
+        }
+        public List<User> GetUsers()
+        {
+            var dbContext = new BirdCageShopContext();
+            return dbContext.Users.ToList();
         }
     }
 }

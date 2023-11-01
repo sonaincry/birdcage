@@ -15,7 +15,15 @@ public class UserRepository : IUserRepository
 
     public User GetUserByEmail(string email) => UserDAO.Instance.GetUserByEmail(email);
 
-    public User GetUserByEmailAndPassword(String email, String password)=>UserDAO.Instance.GetUserByEmailAndPassword(email, password);
+    public User GetUserByEmailAndPassword(String email, String password) => UserDAO.Instance.GetUserByEmailAndPassword(email, password);
 
-    public string GetMaxUserId()=>UserDAO.Instance.GetMaxUserId();
+    public string GetMaxUserId() => UserDAO.Instance.GetMaxUserId();
+
+    public List<User> GetUsers() => UserDAO.Instance.GetUsers();
+
+    public void UpdateUser(User user) => UserDAO.Instance.UpdateUser(user);
+
+    public void DeleteUser(User user) => UserDAO.Instance.DeleteUser(user);
+
+    public bool IsEmailExist(string email) => UserDAO.Instance.IsEmailExist(email);
 }

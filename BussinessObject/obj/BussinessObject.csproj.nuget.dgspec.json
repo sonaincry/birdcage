@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Son\\Desktop\\C#\\birdcage\\birdcage\\BussinessObject\\BussinessObject.csproj": {}
+    "C:\\Users\\Son\\Desktop\\Assignment_PRN211\\birdcage\\BussinessObject\\BussinessObject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Son\\Desktop\\C#\\birdcage\\birdcage\\BussinessObject\\BussinessObject.csproj": {
+    "C:\\Users\\Son\\Desktop\\Assignment_PRN211\\birdcage\\BussinessObject\\BussinessObject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Son\\Desktop\\C#\\birdcage\\birdcage\\BussinessObject\\BussinessObject.csproj",
+        "projectUniqueName": "C:\\Users\\Son\\Desktop\\Assignment_PRN211\\birdcage\\BussinessObject\\BussinessObject.csproj",
         "projectName": "BussinessObject",
-        "projectPath": "C:\\Users\\Son\\Desktop\\C#\\birdcage\\birdcage\\BussinessObject\\BussinessObject.csproj",
+        "projectPath": "C:\\Users\\Son\\Desktop\\Assignment_PRN211\\birdcage\\BussinessObject\\BussinessObject.csproj",
         "packagesPath": "C:\\Users\\Son\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Son\\Desktop\\C#\\birdcage\\birdcage\\BussinessObject\\obj\\",
+        "outputPath": "C:\\Users\\Son\\Desktop\\Assignment_PRN211\\birdcage\\BussinessObject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Son\\AppData\\Roaming\\NuGet\\NuGet.Config",
