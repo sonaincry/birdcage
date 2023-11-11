@@ -37,6 +37,19 @@ namespace DataAccessObject
             }
         }
 
+        public List<Order> GetOrderByUserIdOrPhone(string userId, string phoneNumber)
+        {
+            try
+            {
+                var dbContext = new BirdCageShopContext();
+                return dbContext.Orders.Where(m => m.UserId.Equals(userId) || m.Phone.Equals(phoneNumber)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public string GetMaxOrderId()
         {
             try

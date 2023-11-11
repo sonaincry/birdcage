@@ -43,6 +43,8 @@ partial class BirdCageShop
         detailsBox = new GroupBox();
         btnPurchase = new Button();
         btnCart = new Button();
+        btnLogin = new Button();
+        btnHistory = new Button();
         ((System.ComponentModel.ISupportInitialize)dgvProduct).BeginInit();
         detailsBox.SuspendLayout();
         SuspendLayout();
@@ -207,11 +209,33 @@ partial class BirdCageShop
         btnCart.UseVisualStyleBackColor = true;
         btnCart.Click += btnCart_Click;
         // 
+        // btnLogin
+        // 
+        btnLogin.Location = new Point(690, 521);
+        btnLogin.Name = "btnLogin";
+        btnLogin.Size = new Size(164, 34);
+        btnLogin.TabIndex = 12;
+        btnLogin.Text = "Customer Login";
+        btnLogin.UseVisualStyleBackColor = true;
+        btnLogin.Click += btnLogin_Click;
+        // 
+        // btnHistory
+        // 
+        btnHistory.Location = new Point(925, 521);
+        btnHistory.Name = "btnHistory";
+        btnHistory.Size = new Size(146, 34);
+        btnHistory.TabIndex = 13;
+        btnHistory.Text = "Order History";
+        btnHistory.UseVisualStyleBackColor = true;
+        btnHistory.Click += btnHistory_Click;
+        // 
         // BirdCageShop
         // 
         AutoScaleDimensions = new SizeF(10F, 25F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(1286, 584);
+        Controls.Add(btnHistory);
+        Controls.Add(btnLogin);
         Controls.Add(btnCart);
         Controls.Add(detailsBox);
         Controls.Add(linkLabel1);
@@ -245,4 +269,6 @@ partial class BirdCageShop
     private Button btnCart;
     private Label label5;
     private LinkLabel linkLabel1;
+    private Button btnLogin;
+    private Button btnHistory;
 }

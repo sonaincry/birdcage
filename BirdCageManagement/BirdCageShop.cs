@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BussinessObject;
 using BussinessObject.Models;
+using Microsoft.IdentityModel.Tokens;
 using Services;
 
 namespace BirdCageManagement;
@@ -20,7 +21,7 @@ public partial class BirdCageShop : Form
     {
         InitializeComponent();
         Cart.CartDetails = new List<CartDetail>();
-        
+
         productService = new ProductService();
     }
 
@@ -45,7 +46,16 @@ public partial class BirdCageShop : Form
 
     private void BirdCageShop_Load(object sender, EventArgs e)
     {
-
+        if (UserInfo.UserId != null)
+        {
+            btnLogin.Visible = false;
+            btnHistory.Visible = true;
+        }
+        else
+        {
+            btnLogin.Visible = true;
+            btnHistory.Visible = false;
+        }
         dgvProduct.DataSource = productService.GetProducts().Select(c => new { c.ProductId, c.Name, c.Price, c.Description, c.Spoke }).ToList();
         dgvProduct.Columns["ProductId"].Visible = false;
         dgvProduct.Rows[0].Selected = true;
@@ -80,12 +90,37 @@ public partial class BirdCageShop : Form
 
     private void btnCart_Click(object sender, EventArgs e)
     {
-        CartForm cartForm = new CartForm();
-        cartForm.ShowDialog();
+        if (Cart.CartDetails.Count > 0 || !Cart.CartDetails.IsNullOrEmpty())
+        {
+            CartForm cartForm = new CartForm();
+            cartForm.ShowDialog();
+        }
+        else
+        {
+            MessageBox.Show("You don't have anything in Cart yet!");
+        }
     }
 
     private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
-         
+
+    }
+
+    private void btnLogin_Click(object sender, EventArgs e)
+    {
+        CustomerLoginForm customerLoginForm = new CustomerLoginForm();
+        var result = customerLoginForm.ShowDialog();
+        if (result == DialogResult.OK)
+        {
+            MessageBox.Show("Loged in Successfully!");
+            btnLogin.Visible = false;
+            btnHistory.Visible = true;
+        }
+    }
+
+    private void btnHistory_Click(object sender, EventArgs e)
+    {
+        OrderHistoryForm orderHistoryForm = new OrderHistoryForm();
+        orderHistoryForm.ShowDialog();
     }
 }
