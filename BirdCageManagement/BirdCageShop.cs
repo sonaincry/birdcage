@@ -11,6 +11,7 @@ using BussinessObject;
 using BussinessObject.Models;
 using Microsoft.IdentityModel.Tokens;
 using Services;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace BirdCageManagement;
 public partial class BirdCageShop : Form
@@ -48,13 +49,17 @@ public partial class BirdCageShop : Form
     {
         if (UserInfo.UserId != null)
         {
-            btnLogin.Visible = false;
             btnHistory.Visible = true;
+            lblWelcome.Text = "Welcome " + UserInfo.Fullname;
+            lblWelcome.Visible = true;
+            btnLogin.Text = "Logout";
         }
         else
         {
-            btnLogin.Visible = true;
             btnHistory.Visible = false;
+            lblWelcome.Text = "";
+            lblWelcome.Visible = false;
+            btnLogin.Text = "Customer Login";
         }
         dgvProduct.DataSource = productService.GetProducts().Select(c => new { c.ProductId, c.Name, c.Price, c.Description, c.Spoke }).ToList();
         dgvProduct.Columns["ProductId"].Visible = false;
@@ -108,13 +113,41 @@ public partial class BirdCageShop : Form
 
     private void btnLogin_Click(object sender, EventArgs e)
     {
-        CustomerLoginForm customerLoginForm = new CustomerLoginForm();
-        var result = customerLoginForm.ShowDialog();
-        if (result == DialogResult.OK)
+        if(UserInfo.UserId.IsNullOrEmpty())
         {
-            MessageBox.Show("Loged in Successfully!");
-            btnLogin.Visible = false;
-            btnHistory.Visible = true;
+            CustomerLoginForm customerLoginForm = new CustomerLoginForm();
+            var result = customerLoginForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                MessageBox.Show("Loged in Successfully!");
+                btnHistory.Visible = true;
+                lblWelcome.Text = "Welcome " + UserInfo.Fullname;
+                lblWelcome.Visible = true;
+                btnLogin.Text = "Logout";
+            }
+        } else
+        {
+            var confirmResult = MessageBox.Show(
+                "Are you sure to Logout?",
+                "Loged out",
+                MessageBoxButtons.YesNo
+                );
+            if (confirmResult == DialogResult.Yes)
+            {
+                UserInfo.UserId = null;
+                UserInfo.Email = null;
+                UserInfo.Password = null;
+                UserInfo.Fullname = null;
+                UserInfo.Role = null;
+                UserInfo.Phone = null;
+                UserInfo.Address = null;
+                UserInfo.CreatedDate = null;
+
+                lblWelcome.Text = "";
+                lblWelcome.Visible = false;
+                btnLogin.Text = "Customer Login";
+                btnHistory.Visible = false;
+            }
         }
     }
 

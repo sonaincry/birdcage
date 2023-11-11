@@ -45,6 +45,7 @@ partial class BirdCageShop
         btnCart = new Button();
         btnLogin = new Button();
         btnHistory = new Button();
+        lblWelcome = new Label();
         ((System.ComponentModel.ISupportInitialize)dgvProduct).BeginInit();
         detailsBox.SuspendLayout();
         SuspendLayout();
@@ -229,11 +230,21 @@ partial class BirdCageShop
         btnHistory.UseVisualStyleBackColor = true;
         btnHistory.Click += btnHistory_Click;
         // 
+        // lblWelcome
+        // 
+        lblWelcome.AutoSize = true;
+        lblWelcome.Location = new Point(690, 468);
+        lblWelcome.Name = "lblWelcome";
+        lblWelcome.Size = new Size(59, 25);
+        lblWelcome.TabIndex = 14;
+        lblWelcome.Text = "label6";
+        // 
         // BirdCageShop
         // 
         AutoScaleDimensions = new SizeF(10F, 25F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(1286, 584);
+        Controls.Add(lblWelcome);
         Controls.Add(btnHistory);
         Controls.Add(btnLogin);
         Controls.Add(btnCart);
@@ -271,4 +282,5 @@ partial class BirdCageShop
     private LinkLabel linkLabel1;
     private Button btnLogin;
     private Button btnHistory;
+    private Label lblWelcome;
 }
