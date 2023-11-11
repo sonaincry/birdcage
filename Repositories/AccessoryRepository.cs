@@ -10,4 +10,6 @@ namespace Repositories;
 public class AccessoryRepository : IAccessoryRepository
 {
     public List<Accessory> GetAccessories()=>AccessoryDAO.Instance.GetAccessories();
+
+    public Accessory GetAccessoryById(string id)=>AccessoryDAO.Instance.GetAccessoryById(id);
 }

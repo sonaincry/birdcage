@@ -9,4 +9,5 @@ namespace Repositories;
 public interface IMaterialRepository
 {
     List<Material> GetMaterials();
+    Material GetMaterialById(string id);
 }

@@ -26,4 +26,9 @@ public class AccessoryDAO
         var dbContext = new BirdCageShopContext();
         return dbContext.Accessories.ToList();
     }
+    public Accessory GetAccessoryById(string id)
+    {
+        var dbContext = new BirdCageShopContext();
+        return dbContext.Accessories.SingleOrDefault(m => m.AccessoryId.Equals(id));
+    }
 }

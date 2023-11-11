@@ -26,4 +26,9 @@ public class MaterialDAO
         var dbContext = new BirdCageShopContext();
         return dbContext.Materials.ToList();
     }
+    public Material GetMaterialById(string id)
+    {
+        var dbContext = new BirdCageShopContext();
+        return dbContext.Materials.SingleOrDefault(m => m.MaterialId.Equals(id));
+    }
 }

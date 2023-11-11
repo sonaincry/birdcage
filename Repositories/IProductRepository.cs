@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using BussinessObject.Models;
 
 namespace Repositories;
-public interface IProductRepository
+public interface IProductRepository 
 {
     List<Product> GetProducts();
     Product GetProductById(string id);
@@ -14,4 +14,5 @@ public interface IProductRepository
     void UpdateProduct(Product product);
     void DeleteProduct(Product product);
     string GetMaxProductId();
+    void UpdatePrice(Product product, double? price);
 }

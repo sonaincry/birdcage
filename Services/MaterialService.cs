@@ -14,6 +14,12 @@ public class MaterialService : IMaterialService
     {
         materialRepository = new MaterialRepository();
     }
+
+    public Material GetMaterialById(string id)
+    {
+        return materialRepository.GetMaterialById(id);
+    }
+
     public List<Material> GetMaterials()
     {
         return materialRepository.GetMaterials();

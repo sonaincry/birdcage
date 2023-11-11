@@ -35,15 +35,15 @@ namespace BirdCageManagement
 
         private void BirdCageManagement_Load(object sender, EventArgs e)
         {
-            dgvProduct.DataSource = productService.GetProducts().Select(c => new {c.ProductId, c.Name, c.Price, c.Description, c.Status, c.Spoke}).ToList();
+            dgvProduct.DataSource = productService.GetProducts().Select(c => new { c.ProductId, c.Name, c.Price, c.Description, c.Status, c.Spoke }).ToList();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            try
+            /*try
             {
                 Product product = new Product();
-                /*product.ProductId = txtProductId.Text.Trim();*/
+                *//*product.ProductId = txtProductId.Text.Trim();*//*
                 product.Name = txtProductName.Text.Trim();
                 product.Description = txtDescription.Text.Trim();
                 product.Price = double.Parse(txtProductPrice.Text.Trim());
@@ -66,7 +66,10 @@ namespace BirdCageManagement
             catch (FormatException ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }*/
+            var ap = new AddProduct();
+            ap.Show();
+            this.Hide();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -91,6 +94,9 @@ namespace BirdCageManagement
             {
                 MessageBox.Show("Nothing to update");
             }
+            /*var up = new UpdateProduct();
+            up.Show();
+            this.Hide();*/
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -140,12 +146,19 @@ namespace BirdCageManagement
         {
             txtProductId.Text = dgvProduct.CurrentRow.Cells[0].Value.ToString();
             txtProductId.Enabled = false;
-            txtStatus.Enabled = false;
+            /*txtStatus.Enabled = false;*/
             txtProductName.Text = dgvProduct.CurrentRow.Cells[1].Value.ToString();
             txtProductPrice.Text = dgvProduct.CurrentRow.Cells[2].Value.ToString();
             txtDescription.Text = dgvProduct.CurrentRow.Cells[3].Value.ToString();
             txtStatus.Text = dgvProduct.CurrentRow.Cells[4].Value.ToString();
             txtSpoke.Text = dgvProduct.CurrentRow.Cells[5].Value.ToString();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            var lg = new LoginForm();
+            lg.Show();
         }
     }
 }

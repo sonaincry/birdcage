@@ -214,3 +214,5 @@ C:\Users\Son\Desktop\C#\birdcage\birdcage\BirdCageManagement\obj\Debug\net7.0-wi
 C:\Users\Son\Desktop\C#\birdcage\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.pdb
 C:\Users\Son\Desktop\C#\birdcage\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.genruntimeconfig.cache
 C:\Users\Son\Desktop\C#\birdcage\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\ref\BirdCageManagement.dll
+C:\Users\Son\Desktop\C#\birdcage\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.AddProduct.resources
+C:\Users\Son\Desktop\C#\birdcage\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.UpdateProduct.resources

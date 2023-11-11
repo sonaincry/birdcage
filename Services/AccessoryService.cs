@@ -18,4 +18,9 @@ public class AccessoryService : IAccessoryService
     {
         return accessoryRepository.GetAccessories();
     }
+
+    public Accessory GetAccessoryById(string id)
+    {
+        return accessoryRepository.GetAccessoryById(id);
+    }
 }
