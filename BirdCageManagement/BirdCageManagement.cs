@@ -80,7 +80,7 @@ namespace BirdCageManagement
                 product.Name = txtProductName.Text.Trim();
                 product.Description = txtDescription.Text.Trim();
                 product.Price = double.Parse(txtProductPrice.Text.Trim());
-                product.Status = int.Parse(txtStatus.Text.Trim());
+                product.Status = 1;
                 product.Spoke = int.Parse(txtSpoke.Text.Trim());
 
                 productService.UpdateProduct(product);

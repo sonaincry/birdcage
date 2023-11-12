@@ -3040,11 +3040,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Son\\Desktop\\Assignment_PRN211\\birdcage\\BirdCageManagement\\BirdCageManagement.csproj",
+      "projectUniqueName": "C:\\Users\\Son\\Desktop\\GroupProject_PRN211\\birdcage\\BirdCageManagement\\BirdCageManagement.csproj",
       "projectName": "BirdCageManagement",
-      "projectPath": "C:\\Users\\Son\\Desktop\\Assignment_PRN211\\birdcage\\BirdCageManagement\\BirdCageManagement.csproj",
+      "projectPath": "C:\\Users\\Son\\Desktop\\GroupProject_PRN211\\birdcage\\BirdCageManagement\\BirdCageManagement.csproj",
       "packagesPath": "C:\\Users\\Son\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Son\\Desktop\\Assignment_PRN211\\birdcage\\BirdCageManagement\\obj\\",
+      "outputPath": "C:\\Users\\Son\\Desktop\\GroupProject_PRN211\\birdcage\\BirdCageManagement\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Son\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3061,8 +3061,8 @@
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "projectReferences": {
-            "C:\\Users\\Son\\Desktop\\Assignment_PRN211\\birdcage\\Services\\Services.csproj": {
-              "projectPath": "C:\\Users\\Son\\Desktop\\Assignment_PRN211\\birdcage\\Services\\Services.csproj"
+            "C:\\Users\\Son\\Desktop\\GroupProject_PRN211\\birdcage\\Services\\Services.csproj": {
+              "projectPath": "C:\\Users\\Son\\Desktop\\GroupProject_PRN211\\birdcage\\Services\\Services.csproj"
             }
           }
         }
