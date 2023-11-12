@@ -315,3 +315,6 @@ C:\Users\Son\Desktop\C#\birdcage\birdcage\BirdCageManagement\obj\Debug\net7.0-wi
 C:\Users\Son\Desktop\C#\birdcage\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.CompareForm.resources
 C:\Users\Son\Desktop\C#\birdcage\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.UserManagement.resources
 C:\Users\Son\Desktop\C#\birdcage\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.AdminForm.resources
+C:\Users\Son\Desktop\C#\birdcage\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.CustomerLoginForm.resources
+C:\Users\Son\Desktop\C#\birdcage\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.CustomerRegisterForm.resources
+C:\Users\Son\Desktop\C#\birdcage\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.OrderHistoryForm.resources

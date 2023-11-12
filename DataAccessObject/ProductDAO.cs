@@ -145,4 +145,23 @@ public class ProductDAO
             return existEmail;
         }
     }
+    public void SoftDeleteProduct(string productId)
+    {
+        try
+        {
+            var dbContext = new BirdCageShopContext();
+            var product = dbContext.Products.SingleOrDefault(m => m.ProductId.Equals(productId));
+
+            if (product != null)
+            {
+                // Soft delete by changing the status
+                product.Status = (product.Status == 1) ? 0 : 1;
+                dbContext.SaveChanges();
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error while soft deleting product: " + ex.Message);
+        }
+    }
 }

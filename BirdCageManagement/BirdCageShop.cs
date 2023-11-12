@@ -65,7 +65,7 @@ public partial class BirdCageShop : Form
             lblCustomCage.Visible = false;
             linkCustomOrder.Visible = false;
         }
-        dgvProduct.DataSource = productService.GetProducts().Select(c => new { c.ProductId, c.Name, c.Price, c.Description, c.Spoke }).ToList();
+        dgvProduct.DataSource = productService.GetProducts().Where(p => p.Status == 1).Select(c => new { c.ProductId, c.Name, c.Price, c.Description, c.Spoke }).ToList();
         dgvProduct.Columns["ProductId"].Visible = false;
         dgvProduct.Rows[0].Selected = true;
         currentCage.ProductId = dgvProduct.SelectedRows[0].Cells[0].Value.ToString();
