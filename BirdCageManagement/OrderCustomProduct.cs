@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BussinessObject;
 using BussinessObject.Models;
 using DataAccessObject;
 using Microsoft.Data.SqlClient;
@@ -19,6 +20,8 @@ public partial class OrderCustomProduct : Form
     private readonly IMaterialService materialService;
     private readonly IAccessoryService accessoryService;
     private readonly IProductService productService;
+    private readonly IOrderService orderService;
+    private readonly IOrderDetailService orderDetailService;
     double? totalMaterialPrice = 0;
     double? totalAccessoryPrice = 0;
     double? totalSpokePrice = 0;
@@ -30,6 +33,8 @@ public partial class OrderCustomProduct : Form
         materialService = new MaterialService();
         accessoryService = new AccessoryService();
         productService = new ProductService();
+        orderService = new OrderService();
+        orderDetailService = new OrderDetailService();
     }
 
     private void OrderCustomProduct_Load(object sender, EventArgs e)
@@ -44,11 +49,12 @@ public partial class OrderCustomProduct : Form
     {
         try
         {
-            if (clMaterial.CheckedItems.Count ==0)
+            if (clMaterial.CheckedItems.Count == 0)
             {
                 MessageBox.Show("Please choose at least 1 material!");
                 return;
-            }if(clMaterial.CheckedItems.Count > 3)
+            }
+            if (clMaterial.CheckedItems.Count > 3)
             {
                 MessageBox.Show("Just maximium 3 materials, please remove some!");
                 return;
@@ -70,8 +76,6 @@ public partial class OrderCustomProduct : Form
                 string newProductNumber = newNumber.ToString("D2");
                 product.ProductId = "P" + newProductNumber;
                 productService.AddProduct(product);
-
-
 
 
 
@@ -114,23 +118,60 @@ public partial class OrderCustomProduct : Form
 
                 productService.UpdatePrice(product, totalPrice);
 
+                //Save Order
+                string maxOrderId = orderService.GetMaxOrderId();
+                int currentOrderNumber = int.Parse(maxOrderId.Substring(2));
+                int newOrderNumber = currentNumber + 1;
+                string orderNumber = newOrderNumber.ToString("D2");
+
+                Order order = new Order();
+                order.Total = totalPrice;
+                order.Phone = UserInfo.Phone;
+                order.Address = UserInfo.Address;
+                order.CreatedDate = DateTime.Now;
+                order.Status = 0;
+                order.OrderId = "OD" + orderNumber;
+
+                if (UserInfo.UserId != null)
+                {
+                    order.UserId = UserInfo.UserId;
+                }
+
+                string maxOrderDetailId = orderDetailService.GetMaxOrderDetailId();
+                int cNumber = int.Parse(maxOrderDetailId.Substring(3));
+                int newDTNumber = cNumber + 1;
+                string newOrderDetailNumber = newDTNumber.ToString("D2");
+                OrderDetail orderDetail = new OrderDetail
+                {
+                    OrderDetailId = "ODT" + newOrderDetailNumber,
+                    ProductId = product.ProductId,
+                    OrderId = order.OrderId,
+                    Quantity = 1,
+                    Price = (int?)product.Price,
+                };
+
+                orderService.CreateNewOrder(order);
+
+                orderDetailService.CreateNewOrderDetail(orderDetail);
+
                 Int32 totalDay;
-                if(selectedAccessories.Count == 0) { 
-                    if(selectedMaterials.Count == 1)
+                if (selectedAccessories.Count == 0)
+                {
+                    if (selectedMaterials.Count == 1)
                     {
                         totalDay = 7;
                         DateTime expectedDate = DateTime.Now.AddDays(totalDay);
                         string showDate = expectedDate.ToString("dd-MM-yyyy");
                         MessageBox.Show("Order Successfully, Your price is: " + totalPrice + " and expected date is: " + showDate);
                     }
-                    if(selectedMaterials.Count == 2)
+                    if (selectedMaterials.Count == 2)
                     {
                         totalDay = 9;
                         DateTime expectedDate = DateTime.Now.AddDays(totalDay);
                         string showDate = expectedDate.ToString("dd-MM-yyyy");
                         MessageBox.Show("Order Successfully, Your price is: " + totalPrice + " and expected date is: " + showDate);
                     }
-                    if(selectedMaterials.Count == 3)
+                    if (selectedMaterials.Count == 3)
                     {
                         totalDay = 10;
                         DateTime expectedDate = DateTime.Now.AddDays(totalDay);
@@ -163,15 +204,15 @@ public partial class OrderCustomProduct : Form
                     }
                 }
 
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
-        }catch(Exception ex)
+        }
+        catch (Exception ex)
         {
             throw new Exception(ex.Message);
         }
 
-        
-
-        
     }
     private void linklabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
@@ -182,6 +223,6 @@ public partial class OrderCustomProduct : Form
 
     private void clMaterial_SelectedIndexChanged(object sender, EventArgs e)
     {
-        
+
     }
 }

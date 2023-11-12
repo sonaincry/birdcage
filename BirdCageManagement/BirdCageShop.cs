@@ -53,6 +53,8 @@ public partial class BirdCageShop : Form
             lblWelcome.Text = "Welcome " + UserInfo.Fullname;
             lblWelcome.Visible = true;
             btnLogin.Text = "Logout";
+            lblCustomCage.Visible = true;
+            linkCustomOrder.Visible = true;
         }
         else
         {
@@ -60,6 +62,8 @@ public partial class BirdCageShop : Form
             lblWelcome.Text = "";
             lblWelcome.Visible = false;
             btnLogin.Text = "Customer Login";
+            lblCustomCage.Visible = false;
+            linkCustomOrder.Visible = false;
         }
         dgvProduct.DataSource = productService.GetProducts().Select(c => new { c.ProductId, c.Name, c.Price, c.Description, c.Spoke }).ToList();
         dgvProduct.Columns["ProductId"].Visible = false;
@@ -106,14 +110,9 @@ public partial class BirdCageShop : Form
         }
     }
 
-    private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-    {
-
-    }
-
     private void btnLogin_Click(object sender, EventArgs e)
     {
-        if(UserInfo.UserId.IsNullOrEmpty())
+        if (UserInfo.UserId.IsNullOrEmpty())
         {
             CustomerLoginForm customerLoginForm = new CustomerLoginForm();
             var result = customerLoginForm.ShowDialog();
@@ -124,8 +123,11 @@ public partial class BirdCageShop : Form
                 lblWelcome.Text = "Welcome " + UserInfo.Fullname;
                 lblWelcome.Visible = true;
                 btnLogin.Text = "Logout";
+                lblCustomCage.Visible = true;
+                linkCustomOrder.Visible = true;
             }
-        } else
+        }
+        else
         {
             var confirmResult = MessageBox.Show(
                 "Are you sure to Logout?",
@@ -147,6 +149,8 @@ public partial class BirdCageShop : Form
                 lblWelcome.Visible = false;
                 btnLogin.Text = "Customer Login";
                 btnHistory.Visible = false;
+                lblCustomCage.Visible = false;
+                linkCustomOrder.Visible = false;
             }
         }
     }
@@ -155,5 +159,11 @@ public partial class BirdCageShop : Form
     {
         OrderHistoryForm orderHistoryForm = new OrderHistoryForm();
         orderHistoryForm.ShowDialog();
+    }
+
+    private void linkCustomOrder_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+        OrderCustomProduct customProduct = new OrderCustomProduct();
+        var result = customProduct.ShowDialog();
     }
 }
