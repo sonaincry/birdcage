@@ -307,3 +307,11 @@ C:\Users\Son\Desktop\GroupProject_PRN211\birdcage\BirdCageManagement\obj\Debug\n
 C:\Users\Son\Desktop\GroupProject_PRN211\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.pdb
 C:\Users\Son\Desktop\GroupProject_PRN211\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.genruntimeconfig.cache
 C:\Users\Son\Desktop\GroupProject_PRN211\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\ref\BirdCageManagement.dll
+C:\Users\Son\Desktop\C#\birdcage\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.AddToCartForm.resources
+C:\Users\Son\Desktop\C#\birdcage\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.AddUser.resources
+C:\Users\Son\Desktop\C#\birdcage\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.CagesListForm.resources
+C:\Users\Son\Desktop\C#\birdcage\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.CartForm.resources
+C:\Users\Son\Desktop\C#\birdcage\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.CheckoutForm.resources
+C:\Users\Son\Desktop\C#\birdcage\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.CompareForm.resources
+C:\Users\Son\Desktop\C#\birdcage\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.UserManagement.resources
+C:\Users\Son\Desktop\C#\birdcage\birdcage\BirdCageManagement\obj\Debug\net7.0-windows\BirdCageManagement.AdminForm.resources

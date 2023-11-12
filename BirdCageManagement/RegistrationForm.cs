@@ -79,6 +79,12 @@ public partial class RegistrationForm : Form
                 isValid = false;
                 return;
             }
+            if (userService.isValidPhone(txtPhone.Text.Trim()))
+            {
+                errorProvider1.SetError(txtPhone, "Phone number is already exist. Please try with another phone number");
+                isValid = false;
+                return;
+            }
             if (!isValidPhone((txtPhone.Text.Trim())))
             {
                 errorProvider1.SetError(txtPhone, "Invalid phone number!");

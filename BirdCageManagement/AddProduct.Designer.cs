@@ -28,6 +28,7 @@ partial class AddProduct
     /// </summary>
     private void InitializeComponent()
     {
+        components = new System.ComponentModel.Container();
         label1 = new Label();
         label3 = new Label();
         label4 = new Label();
@@ -39,6 +40,9 @@ partial class AddProduct
         label2 = new Label();
         btnAdd = new Button();
         linkLabel1 = new LinkLabel();
+        errorProvider1 = new ErrorProvider(components);
+        linkLabel2 = new LinkLabel();
+        ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
         SuspendLayout();
         // 
         // label1
@@ -131,11 +135,27 @@ partial class AddProduct
         linkLabel1.Size = new Size(100, 23);
         linkLabel1.TabIndex = 0;
         // 
+        // errorProvider1
+        // 
+        errorProvider1.ContainerControl = this;
+        // 
+        // linkLabel2
+        // 
+        linkLabel2.AutoSize = true;
+        linkLabel2.Location = new Point(12, 9);
+        linkLabel2.Name = "linkLabel2";
+        linkLabel2.Size = new Size(32, 15);
+        linkLabel2.TabIndex = 11;
+        linkLabel2.TabStop = true;
+        linkLabel2.Text = "Back";
+        linkLabel2.LinkClicked += linkLabel2_LinkClicked;
+        // 
         // AddProduct
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
+        Controls.Add(linkLabel2);
         Controls.Add(btnAdd);
         Controls.Add(label2);
         Controls.Add(txtSpoke);
@@ -148,6 +168,7 @@ partial class AddProduct
         Controls.Add(label1);
         Name = "AddProduct";
         Text = "AddProduct";
+        ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -165,4 +186,6 @@ partial class AddProduct
     private Label label2;
     private Button btnAdd;
     private LinkLabel linkLabel1;
+    private ErrorProvider errorProvider1;
+    private LinkLabel linkLabel2;
 }

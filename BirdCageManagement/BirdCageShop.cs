@@ -48,7 +48,7 @@ public partial class BirdCageShop : Form
 
         dgvProduct.DataSource = productService.GetProducts().Select(c => new { c.ProductId, c.Name, c.Price, c.Description, c.Spoke }).ToList();
         dgvProduct.Columns["ProductId"].Visible = false;
-        dgvProduct.Rows[0].Selected = true; 
+        dgvProduct.Rows[0].Selected = true;
         currentCage.ProductId = dgvProduct.SelectedRows[0].Cells[0].Value.ToString();
         currentCage.Name = dgvProduct.SelectedRows[0].Cells["Name"].Value.ToString();
         currentCage.Price = double.Parse(dgvProduct.SelectedRows[0].Cells["Price"].Value.ToString());
@@ -106,5 +106,17 @@ public partial class BirdCageShop : Form
         /*this.Hide();
         var cf = new CompareForm();
         cf.Show();*/
+    }
+
+    private void detailsBox_Enter(object sender, EventArgs e)
+    {
+
+    }
+
+    private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+        this.Hide();
+        var lf = new LoginForm();
+        lf.Show();
     }
 }

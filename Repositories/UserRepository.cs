@@ -26,4 +26,6 @@ public class UserRepository : IUserRepository
     public void DeleteUser(User user) => UserDAO.Instance.DeleteUser(user);
 
     public bool IsEmailExist(string email) => UserDAO.Instance.IsEmailExist(email);
+
+    public bool isValidPhone(string phone) => UserDAO.Instance.isValidPhone(phone);
 }

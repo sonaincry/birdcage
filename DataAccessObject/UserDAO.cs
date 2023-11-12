@@ -131,6 +131,14 @@ namespace DataAccessObject
                 return existEmail;
             }
         }
+        public bool isValidPhone(string phone)
+        {
+            using (var dbContext = new BirdCageShopContext())
+            {
+                bool existEmail = dbContext.Users.Any(u => u.Phone == phone);
+                return existEmail;
+            }
+        }
         public List<User> GetUsers()
         {
             var dbContext = new BirdCageShopContext();
