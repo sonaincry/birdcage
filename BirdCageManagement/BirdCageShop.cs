@@ -166,4 +166,23 @@ public partial class BirdCageShop : Form
         OrderCustomProduct customProduct = new OrderCustomProduct();
         var result = customProduct.ShowDialog();
     }
+
+    private void btnCpare_Click(object sender, EventArgs e)
+    {
+        /*this.Hide();
+        var cf = new CompareForm();
+        cf.Show();*/
+    }
+
+    private void detailsBox_Enter(object sender, EventArgs e)
+    {
+
+    }
+
+    private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+        this.Hide();
+        var lf = new LoginForm();
+        lf.Show();
+    }
 }

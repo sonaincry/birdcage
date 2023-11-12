@@ -20,6 +20,8 @@ public class ProductRepository : IProductRepository
 
     public List<Product> GetProducts()=>ProductDAO.Instance.GetProducts();
 
+    public bool IsNameExist(string name)=>ProductDAO.Instance.IsNameExist(name);
+
     public void UpdatePrice(Product product, double? price)=>ProductDAO.Instance.UpdatePrice(product, price);
 
     public void UpdateProduct(Product product) => ProductDAO.Instance.UpdateProduct(product);

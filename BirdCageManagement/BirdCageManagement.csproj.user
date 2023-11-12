@@ -7,6 +7,12 @@
     <Compile Update="AddToCartForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="AddUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="BirdCageManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -44,6 +50,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UpdateProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserManagement.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

@@ -40,6 +40,11 @@ public class ProductService : IProductService
         return productRepository.GetProducts();
     }
 
+    public bool IsNameExist(string name)
+    {
+        return productRepository.IsNameExist(name);
+    }
+
     public void UpdatePrice(Product product, double? price)
     {
         productRepository.UpdatePrice(product, price);

@@ -17,14 +17,26 @@ namespace BirdCageManagement
             User user = userService.GetUserByEmailAndPassword(txtUsername.Text, txtPassword.Text);
             if (user != null)
             {
-                if (user.Role == 0 || user.Role == 1 || user.Role == 2) //Role Admin && Role Manager && Role Staff  
+                if (user.Role == 0) //Admin
+                {
+                    this.Hide();
+                    UserManagement bc = new UserManagement();
+                    bc.ShowDialog();
+                    
+                }
+                if(user.Role == 2) //Staff
                 {
                     this.Hide();
                     BirdCageManagement bc = new BirdCageManagement();
                     bc.ShowDialog();
-                    
                 }
-                else //Role Customer
+                if(user.Role == 1) //Manager
+                {
+                    this.Hide();
+                    AdminForm bc = new AdminForm();
+                    bc.ShowDialog();
+                }
+                else //Customer
                 {
                     this.Hide();
                     var bc = new BirdCageShop();

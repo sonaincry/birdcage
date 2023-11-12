@@ -46,6 +46,7 @@ partial class BirdCageShop
         btnLogin = new Button();
         btnHistory = new Button();
         lblWelcome = new Label();
+      
         ((System.ComponentModel.ISupportInitialize)dgvProduct).BeginInit();
         detailsBox.SuspendLayout();
         SuspendLayout();
@@ -183,18 +184,22 @@ partial class BirdCageShop
         detailsBox.Controls.Add(label4);
         detailsBox.Controls.Add(txtDescription);
         detailsBox.Controls.Add(txtPrice);
-        detailsBox.Location = new Point(690, 13);
+        detailsBox.Location = new Point(483, 8);
+        detailsBox.Margin = new Padding(2, 2, 2, 2);
         detailsBox.Name = "detailsBox";
-        detailsBox.Size = new Size(527, 373);
+        detailsBox.Padding = new Padding(2, 2, 2, 2);
+        detailsBox.Size = new Size(369, 224);
         detailsBox.TabIndex = 10;
         detailsBox.TabStop = false;
         detailsBox.Text = "Details";
+        detailsBox.Enter += detailsBox_Enter;
         // 
         // btnPurchase
         // 
-        btnPurchase.Location = new Point(378, 311);
+        btnPurchase.Location = new Point(265, 187);
+        btnPurchase.Margin = new Padding(2, 2, 2, 2);
         btnPurchase.Name = "btnPurchase";
-        btnPurchase.Size = new Size(112, 36);
+        btnPurchase.Size = new Size(78, 22);
         btnPurchase.TabIndex = 11;
         btnPurchase.Text = "Purchase";
         btnPurchase.UseVisualStyleBackColor = true;
@@ -202,9 +207,10 @@ partial class BirdCageShop
         // 
         // btnCart
         // 
-        btnCart.Location = new Point(1105, 521);
+        btnCart.Location = new Point(774, 313);
+        btnCart.Margin = new Padding(2, 2, 2, 2);
         btnCart.Name = "btnCart";
-        btnCart.Size = new Size(112, 34);
+        btnCart.Size = new Size(78, 20);
         btnCart.TabIndex = 11;
         btnCart.Text = "Your Cart";
         btnCart.UseVisualStyleBackColor = true;
@@ -283,4 +289,5 @@ partial class BirdCageShop
     private Button btnLogin;
     private Button btnHistory;
     private Label lblWelcome;
+
 }

@@ -13,4 +13,9 @@ public interface IUserService
     User GetUserByEmail(string email);
     public void AddUser(User user);
     string GetMaxUserId();
+    List<User> GetUsers();
+    void UpdateUser(User user);
+    void DeleteUser(User user);
+    bool IsEmailExist(string email);
+    bool isValidPhone(string phone);
 }

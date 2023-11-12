@@ -19,6 +19,11 @@ public class UserService : IUserService
         userRepository.AddUser(user);
     }
 
+    public void DeleteUser(User user)
+    {
+        userRepository.DeleteUser(user);
+    }
+
     public string GetMaxUserId()
     {
         return userRepository.GetMaxUserId();
@@ -37,5 +42,25 @@ public class UserService : IUserService
     public User GetUserById(string id)
     {
         return userRepository.GetUserById(id);
+    }
+
+    public List<User> GetUsers()
+    {
+        return userRepository.GetUsers();
+    }
+
+    public bool IsEmailExist(string email)
+    {
+        return userRepository.IsEmailExist(email);
+    }
+
+    public bool isValidPhone(string phone)
+    {
+        return userRepository.isValidPhone(phone);
+    }
+
+    public void UpdateUser(User user)
+    {
+        userRepository.UpdateUser(user);
     }
 }

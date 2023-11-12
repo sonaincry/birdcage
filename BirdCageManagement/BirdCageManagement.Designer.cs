@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             dgvProduct = new DataGridView();
             label1 = new Label();
             label2 = new Label();
@@ -48,7 +49,9 @@
             btnSearch = new Button();
             txtSpoke = new TextBox();
             linkLabel1 = new LinkLabel();
+            errorProvider1 = new ErrorProvider(components);
             ((System.ComponentModel.ISupportInitialize)dgvProduct).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // dgvProduct
@@ -240,6 +243,10 @@
             linkLabel1.Text = "Logout";
             linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
             // BirdCageManagement
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -270,6 +277,7 @@
             Text = "Product Management";
             Load += BirdCageManagement_Load;
             ((System.ComponentModel.ISupportInitialize)dgvProduct).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -296,5 +304,6 @@
         private Button btnSearch;
         private TextBox txtSpoke;
         private LinkLabel linkLabel1;
+        private ErrorProvider errorProvider1;
     }
 }
