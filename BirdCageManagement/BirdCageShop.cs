@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BussinessObject;
 using BussinessObject.Models;
+using Microsoft.IdentityModel.Tokens;
 using Services;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace BirdCageManagement;
 public partial class BirdCageShop : Form
@@ -45,7 +47,24 @@ public partial class BirdCageShop : Form
 
     private void BirdCageShop_Load(object sender, EventArgs e)
     {
-
+        if (UserInfo.UserId != null)
+        {
+            btnHistory.Visible = true;
+            lblWelcome.Text = "Welcome " + UserInfo.Fullname;
+            lblWelcome.Visible = true;
+            btnLogin.Text = "Logout";
+            lblCustomCage.Visible = true;
+            linkCustomOrder.Visible = true;
+        }
+        else
+        {
+            btnHistory.Visible = false;
+            lblWelcome.Text = "";
+            lblWelcome.Visible = false;
+            btnLogin.Text = "Customer Login";
+            lblCustomCage.Visible = false;
+            linkCustomOrder.Visible = false;
+        }
         dgvProduct.DataSource = productService.GetProducts().Select(c => new { c.ProductId, c.Name, c.Price, c.Description, c.Spoke }).ToList();
         dgvProduct.Columns["ProductId"].Visible = false;
         dgvProduct.Rows[0].Selected = true;
@@ -59,9 +78,6 @@ public partial class BirdCageShop : Form
         txtPrice.Text = currentCage.Price.ToString();
         txtDescription.Text = currentCage.Description;
         txtSpoke.Text = currentCage.Spoke.ToString();
-
-        dgvProduct.DataSource = productService.GetProducts().Where(p => p.Status == 1)
-            .Select(c => new { c.Name, c.Price, c.Description, c.Spoke }).ToList();
     }
 
     private void btnCompare_Click(object sender, EventArgs e)
@@ -83,22 +99,72 @@ public partial class BirdCageShop : Form
 
     private void btnCart_Click(object sender, EventArgs e)
     {
-        CartForm cartForm = new CartForm();
-        cartForm.ShowDialog();
+        if (Cart.CartDetails.Count > 0 || !Cart.CartDetails.IsNullOrEmpty())
+        {
+            CartForm cartForm = new CartForm();
+            cartForm.ShowDialog();
+        }
+        else
+        {
+            MessageBox.Show("You don't have anything in Cart yet!");
+        }
     }
 
-    private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    private void btnLogin_Click(object sender, EventArgs e)
     {
-        this.Hide();
-        var ocp = new OrderCustomProduct();
-        ocp.Show();
+        if (UserInfo.UserId.IsNullOrEmpty())
+        {
+            CustomerLoginForm customerLoginForm = new CustomerLoginForm();
+            var result = customerLoginForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                MessageBox.Show("Loged in Successfully!");
+                btnHistory.Visible = true;
+                lblWelcome.Text = "Welcome " + UserInfo.Fullname;
+                lblWelcome.Visible = true;
+                btnLogin.Text = "Logout";
+                lblCustomCage.Visible = true;
+                linkCustomOrder.Visible = true;
+            }
+        }
+        else
+        {
+            var confirmResult = MessageBox.Show(
+                "Are you sure to Logout?",
+                "Loged out",
+                MessageBoxButtons.YesNo
+                );
+            if (confirmResult == DialogResult.Yes)
+            {
+                UserInfo.UserId = null;
+                UserInfo.Email = null;
+                UserInfo.Password = null;
+                UserInfo.Fullname = null;
+                UserInfo.Role = null;
+                UserInfo.Phone = null;
+                UserInfo.Address = null;
+                UserInfo.CreatedDate = null;
+
+                lblWelcome.Text = "";
+                lblWelcome.Visible = false;
+                btnLogin.Text = "Customer Login";
+                btnHistory.Visible = false;
+                lblCustomCage.Visible = false;
+                linkCustomOrder.Visible = false;
+            }
+        }
     }
 
-    private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    private void btnHistory_Click(object sender, EventArgs e)
     {
-        this.Hide();
-        var lg = new LoginForm();
-        lg.Show();
+        OrderHistoryForm orderHistoryForm = new OrderHistoryForm();
+        orderHistoryForm.ShowDialog();
+    }
+
+    private void linkCustomOrder_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+        OrderCustomProduct customProduct = new OrderCustomProduct();
+        var result = customProduct.ShowDialog();
     }
 
     private void btnCpare_Click(object sender, EventArgs e)

@@ -44,7 +44,14 @@ namespace BirdCageManagement
                 order.Address = txtAddress.Text.Trim();
                 order.CreatedDate = DateTime.Now;
                 order.Status = 0;
-                order.OrderId = "OD" + newNumber;
+                order.OrderId = "OD" + newOrderNumber;
+
+                if (UserInfo.UserId != null)
+                {
+                    order.UserId = UserInfo.UserId;
+                }
+
+                List<OrderDetail> details = new List<OrderDetail>();
 
                 foreach (var detail in Cart.CartDetails)
                 {
@@ -61,16 +68,19 @@ namespace BirdCageManagement
                         Price = (int?)detail.SumPrice,
                         //Product = detail.Product,
                     };
-                    order.OrderDetails.Add(orderDetail);
+                    details.Add(orderDetail);
+                    //order.OrderDetails.Add(orderDetail);
                     //_orderDetailService.CreateNewOrderDetail(orderDetail);
                 }
+                //order.OrderDetails = null;
 
                 _orderService.CreateNewOrder(order);
 
-                foreach (var detail in order.OrderDetails)
+                foreach (var detail in details)
                 {
                     _orderDetailService.CreateNewOrderDetail(detail);
                 }
+                Cart.CartDetails = new List<CartDetail>();
                 MessageBox.Show("Ordered Successfully! Please wait 2-3 days for the delivery.");
 
                 this.DialogResult = DialogResult.OK;
@@ -80,7 +90,49 @@ namespace BirdCageManagement
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
+        }
+
+        private void CheckoutForm_Load(object sender, EventArgs e)
+        {
+            if (UserInfo.UserId != null)
+            {
+                txtAddress.Text = UserInfo.Address.ToString();
+                txtPhoneNumber.Text = UserInfo.Phone.ToString();
+                linkLogin.Visible = false;
+            }
+            else
+            {
+                linkLogin.Visible = true;
+            }
+        }
+
+        private void linkLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            CustomerLoginForm customerLoginForm = new CustomerLoginForm();
+            var result = customerLoginForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                MessageBox.Show("Loged in Successfully!");
+                linkLogin.Visible = false;
+            }
+        }
+
+        private void txtPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            } else
+            {
+                if (Char.IsDigit(e.KeyChar))
+                {
+                    if (txtPhoneNumber.Text.Length > 9)
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
         }
     }
 }

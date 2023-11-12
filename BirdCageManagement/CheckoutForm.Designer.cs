@@ -34,11 +34,12 @@
             txtPhoneNumber = new TextBox();
             txtAddress = new TextBox();
             button1 = new Button();
+            linkLogin = new LinkLabel();
             SuspendLayout();
             // 
             // btnOrder
             // 
-            btnOrder.Location = new Point(264, 220);
+            btnOrder.Location = new Point(265, 209);
             btnOrder.Name = "btnOrder";
             btnOrder.Size = new Size(112, 34);
             btnOrder.TabIndex = 0;
@@ -70,6 +71,7 @@
             txtPhoneNumber.Name = "txtPhoneNumber";
             txtPhoneNumber.Size = new Size(247, 31);
             txtPhoneNumber.TabIndex = 3;
+            txtPhoneNumber.KeyPress += txtPhoneNumber_KeyPress;
             // 
             // txtAddress
             // 
@@ -80,18 +82,30 @@
             // 
             // button1
             // 
-            button1.Location = new Point(95, 220);
+            button1.Location = new Point(96, 209);
             button1.Name = "button1";
             button1.Size = new Size(112, 34);
             button1.TabIndex = 5;
             button1.Text = "Cancel";
             button1.UseVisualStyleBackColor = true;
             // 
+            // linkLogin
+            // 
+            linkLogin.AutoSize = true;
+            linkLogin.Location = new Point(160, 29);
+            linkLogin.Name = "linkLogin";
+            linkLogin.Size = new Size(160, 25);
+            linkLogin.TabIndex = 6;
+            linkLogin.TabStop = true;
+            linkLogin.Text = "Login as Customer";
+            linkLogin.LinkClicked += linkLogin_LinkClicked;
+            // 
             // CheckoutForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(479, 315);
+            ClientSize = new Size(479, 288);
+            Controls.Add(linkLogin);
             Controls.Add(button1);
             Controls.Add(txtAddress);
             Controls.Add(txtPhoneNumber);
@@ -100,6 +114,7 @@
             Controls.Add(btnOrder);
             Name = "CheckoutForm";
             Text = "Checkout";
+            Load += CheckoutForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -112,5 +127,6 @@
         private TextBox txtPhoneNumber;
         private TextBox txtAddress;
         private Button button1;
+        private LinkLabel linkLogin;
     }
 }

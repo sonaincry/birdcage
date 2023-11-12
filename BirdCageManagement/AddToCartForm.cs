@@ -33,7 +33,7 @@ namespace BirdCageManagement
             txtSelectedPrice.Text = this.addedCage.Price.ToString();
             txtSelectedDescription.Text = this.addedCage.Description;
             txtSelectedSpoke.Text = this.addedCage.Spoke.ToString();
-            txtQuantity.Text = "0";
+            txtQuantity.Text = "1";
         }
 
         private void btnDecrease_Click(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace BirdCageManagement
             if (!this.txtQuantity.Text.IsNullOrEmpty())
             {
                 var quantity = int.Parse(this.txtQuantity.Text);
-                if (quantity > 0)
+                if (quantity > 1)
                 {
                     quantity -= 1;
                     this.txtQuantity.Text = quantity.ToString();

@@ -22,5 +22,8 @@ namespace Services
         public string GetMaxOrderId() => orderRepository.GetMaxOrderId();
 
         public Order GetOrderById(string id) => orderRepository.GetOrderById(id);
+
+        public List<Order> GetOrderByUserIdOrPhone(string userId, string phoneNumber) 
+            => orderRepository.GetOrderByUserIdOrPhone(userId, phoneNumber);
     }
 }

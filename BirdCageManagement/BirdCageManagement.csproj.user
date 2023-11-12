@@ -31,10 +31,19 @@
     <Compile Update="CompareForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="CustomerLoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CustomerRegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="OrderCustomProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="OrderHistoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="RegistrationForm.cs">
