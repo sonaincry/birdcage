@@ -16,4 +16,5 @@ public interface IProductRepository
     string GetMaxProductId();
     void UpdatePrice(Product product, double? price);
     bool IsNameExist(string name);
+    void SoftDeleteProduct(string productId);
 }

@@ -45,6 +45,11 @@ public class ProductService : IProductService
         return productRepository.IsNameExist(name);
     }
 
+    public void SoftDeleteProduct(string productId)
+    {
+        productRepository.SoftDeleteProduct(productId);
+    }
+
     public void UpdatePrice(Product product, double? price)
     {
         productRepository.UpdatePrice(product, price);

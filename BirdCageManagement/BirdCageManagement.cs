@@ -158,13 +158,7 @@ namespace BirdCageManagement
             Product product = productService.GetProductById(txtProductId.Text.Trim());
             if (product != null)
             {
-                product.Name = txtProductName.Text.Trim();
-                product.Description = txtDescription.Text.Trim();
-                product.Price = double.Parse(txtProductPrice.Text.Trim());
-                product.Status = 0;
-                product.Spoke = int.Parse(txtSpoke.Text.Trim());
-
-                productService.DeleteProduct(product);
+                productService.SoftDeleteProduct(product.ProductId);
 
                 MessageBox.Show("Delete product successfully");
 

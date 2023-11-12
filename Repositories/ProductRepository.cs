@@ -22,6 +22,8 @@ public class ProductRepository : IProductRepository
 
     public bool IsNameExist(string name)=>ProductDAO.Instance.IsNameExist(name);
 
+    public void SoftDeleteProduct(string productId) => ProductDAO.Instance.SoftDeleteProduct(productId);
+
     public void UpdatePrice(Product product, double? price)=>ProductDAO.Instance.UpdatePrice(product, price);
 
     public void UpdateProduct(Product product) => ProductDAO.Instance.UpdateProduct(product);
