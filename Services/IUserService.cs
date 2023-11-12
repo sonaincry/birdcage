@@ -17,4 +17,5 @@ public interface IUserService
     void UpdateUser(User user);
     void DeleteUser(User user);
     bool IsEmailExist(string email);
+    bool isValidPhone(string phone);
 }

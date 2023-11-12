@@ -54,6 +54,11 @@ public class UserService : IUserService
         return userRepository.IsEmailExist(email);
     }
 
+    public bool isValidPhone(string phone)
+    {
+        return userRepository.isValidPhone(phone);
+    }
+
     public void UpdateUser(User user)
     {
         userRepository.UpdateUser(user);

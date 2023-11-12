@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using BussinessObject.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic.ApplicationServices;
@@ -74,21 +75,61 @@ namespace BirdCageManagement
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+
             Product product = productService.GetProductById(txtProductId.Text.Trim());
             if (product != null)
             {
-                product.Name = txtProductName.Text.Trim();
-                product.Description = txtDescription.Text.Trim();
-                product.Price = double.Parse(txtProductPrice.Text.Trim());
-                product.Status = 1;
-                product.Spoke = int.Parse(txtSpoke.Text.Trim());
+                bool isValid = true;
+                if (string.IsNullOrEmpty(txtProductName.Text.Trim()))
+                {
+                    errorProvider1.SetError(txtProductName, "Required");
+                    isValid = false;
+                    return;
+                }
+                if (productService.IsNameExist(txtProductName.Text.Trim()))
+                {
+                    errorProvider1.SetError(txtProductName, "This product already exist please select different name!");
+                    isValid = false;
+                    return;
+                }
+                if (string.IsNullOrEmpty(txtProductPrice.Text.Trim()))
+                {
+                    errorProvider1.SetError(txtProductPrice, "Required");
+                    isValid = false;
+                    return;
+                }
+                if (string.IsNullOrEmpty(txtSpoke.Text.Trim()))
+                {
+                    errorProvider1.SetError(txtSpoke, "Required");
+                    isValid = false;
+                    return;
+                }
+                if (!IsValidPrice(int.Parse(txtProductPrice.Text.Trim())))
+                {
+                    errorProvider1.SetError(txtProductPrice, "Price must at least 1000VND");
+                    isValid = false;
+                    return;
+                }
+                if (!IsValidSpoke(int.Parse(txtSpoke.Text.Trim())))
+                {
+                    errorProvider1.SetError(txtSpoke, "Spoke must at least 51 and maxium 60");
+                    isValid = false;
+                    return;
+                }
+                if (isValid)
+                {
+                    product.Name = txtProductName.Text.Trim();
+                    product.Description = txtDescription.Text.Trim();
+                    product.Price = double.Parse(txtProductPrice.Text.Trim());
+                    product.Status = 1;
+                    product.Spoke = int.Parse(txtSpoke.Text.Trim());
 
-                productService.UpdateProduct(product);
+                    productService.UpdateProduct(product);
 
-                MessageBox.Show("Update product successfully");
+                    MessageBox.Show("Update product successfully");
 
-                dgvProduct.DataSource = productService.GetProducts();
-
+                    dgvProduct.DataSource = productService.GetProducts();
+                }
             }
             else
             {
@@ -123,7 +164,7 @@ namespace BirdCageManagement
                 product.Status = 0;
                 product.Spoke = int.Parse(txtSpoke.Text.Trim());
 
-                productService.UpdateProduct(product);
+                productService.DeleteProduct(product);
 
                 MessageBox.Show("Delete product successfully");
 
@@ -159,6 +200,14 @@ namespace BirdCageManagement
             this.Hide();
             var lg = new LoginForm();
             lg.Show();
+        }
+        private bool IsValidSpoke(int number)
+        {
+            return number >= 51 && number <= 60;
+        }
+        private bool IsValidPrice(int number)
+        {
+            return number > 1000;
         }
     }
 }

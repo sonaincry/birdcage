@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BussinessObject.Models;
@@ -46,12 +47,73 @@ public partial class UserManagement : Form
         User user = userService.GetUserById(txtUserID.Text.Trim());
         if (user != null)
         {
-            user.Fullname = txtFullname.Text.Trim();
-            user.Phone = txtPhone.Text.Trim();
-            user.Address = txtAddress.Text.Trim();
-            user.Role = int.Parse(txtRole.Text.Trim());
-            userService.UpdateUser(user);
-            MessageBox.Show("Update successfully!");
+            bool isValid = true;
+            if (string.IsNullOrEmpty(txtEmail.Text.Trim()))
+            {
+                errorProvider1.SetError(txtEmail, "Required");
+                isValid = false;
+                return;
+            }
+            if (!IsValidEmail(txtEmail.Text.Trim()))
+            {
+                errorProvider1.SetError(txtEmail, "Invalid email");
+                isValid = false;
+                return;
+            }
+            if (userService.IsEmailExist(txtEmail.Text.Trim()))
+            {
+                errorProvider1.SetError(txtEmail, "Email already exist! Please try something else");
+                isValid = false;
+                return;
+            }
+            if (string.IsNullOrEmpty(txtFullname.Text.Trim()))
+            {
+                errorProvider1.SetError(txtFullname, "Required");
+                isValid = false;
+                return;
+            }
+            if (!isValidLength(txtFullname.Text.Trim()))
+            {
+                errorProvider1.SetError(txtFullname, "Must have at least 6 characters and maximum is 25!");
+            }
+            if (string.IsNullOrEmpty(txtPhone.Text.Trim()))
+            {
+                errorProvider1.SetError(txtPhone, "Required");
+                isValid = false;
+                return;
+            }
+            if (userService.isValidPhone(txtPhone.Text.Trim()))
+            {
+                errorProvider1.SetError(txtPhone, "Phone number is already exist. Please try with another phone number");
+                isValid = false;
+                return;
+            }
+            if (!isValidPhone((txtPhone.Text.Trim())))
+            {
+                errorProvider1.SetError(txtPhone, "Invalid phone number!");
+                isValid = false;
+                return;
+            }
+            if (string.IsNullOrEmpty(txtAddress.Text.Trim()))
+            {
+                errorProvider1.SetError(txtAddress, "Required");
+                isValid = false;
+                return;
+            }
+            if (isValid)
+            {
+                user.Fullname = txtFullname.Text.Trim();
+                user.Phone = txtPhone.Text.Trim();
+                user.Address = txtAddress.Text.Trim();
+                user.Role = int.Parse(txtRole.Text.Trim());
+                user.CreatedDate = DateTime.Now;
+                user.Password = "123456";
+                userService.UpdateUser(user);
+                MessageBox.Show("Update successfully!");
+
+                dgvUser.DataSource = userService.GetUsers();
+            }
+
         }
     }
 
@@ -68,6 +130,34 @@ public partial class UserManagement : Form
         if (user != null)
         {
             userService.DeleteUser(user);
+            MessageBox.Show("Delete successfully!");
+            dgvUser.DataSource = userService.GetUsers();
         }
+    }
+    private static bool IsValidEmail(string email)
+    {
+        string regex = @"^[^@\s]+@[^@\s]+\.(com|net|org|gov)$";
+
+        return Regex.IsMatch(email, regex, RegexOptions.IgnoreCase);
+    }
+
+
+    private bool isValidLength(string input)
+    {
+
+        return input.Length >= 6 && input.Length <= 25;
+    }
+    private bool isValidPhone(string phone)
+    {
+        string regex = @"^0\d{9}$";
+
+        return Regex.IsMatch(phone, regex);
+    }
+
+    private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+        this.Hide();
+        var lf = new LoginForm();
+        lf.Show();
     }
 }

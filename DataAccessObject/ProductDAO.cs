@@ -137,4 +137,12 @@ public class ProductDAO
             throw new Exception("Error while retrieving max user ID: " + ex.Message);
         }
     }
+    public bool IsNameExist(string name)
+    {
+        using (var dbContext = new BirdCageShopContext())
+        {
+            bool existEmail = dbContext.Products.Any(u => u.Name == name);
+            return existEmail;
+        }
+    }
 }
