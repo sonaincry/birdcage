@@ -1,3 +1,4 @@
+using BussinessObject;
 using BussinessObject.Models;
 using Services;
 
@@ -22,15 +23,15 @@ namespace BirdCageManagement
                     this.Hide();
                     UserManagement bc = new UserManagement();
                     bc.ShowDialog();
-                    
+
                 }
-                if(user.Role == 2) //Staff
+                if (user.Role == 2) //Staff
                 {
                     this.Hide();
                     BirdCageManagement bc = new BirdCageManagement();
                     bc.ShowDialog();
                 }
-                if(user.Role == 1) //Manager
+                if (user.Role == 1) //Manager
                 {
                     this.Hide();
                     AdminForm bc = new AdminForm();
@@ -39,9 +40,17 @@ namespace BirdCageManagement
                 else //Customer
                 {
                     this.Hide();
+                    UserInfo.UserId = user.UserId;
+                    UserInfo.Email = user.Email;
+                    UserInfo.Password = user.Password;
+                    UserInfo.Role = user.Role;
+                    UserInfo.Phone = user.Phone;
+                    UserInfo.Address = user.Address;
+                    UserInfo.Fullname = user.Fullname;
+                    UserInfo.CreatedDate = user.CreatedDate;
                     var bc = new BirdCageShop();
                     bc.ShowDialog();
-                    
+
                 }
             }
             else
@@ -65,6 +74,13 @@ namespace BirdCageManagement
             var rf = new RegistrationForm();
             rf.Show();
             this.Hide();
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            var bs = new BirdCageShop();
+            bs.Show();
         }
     }
 }

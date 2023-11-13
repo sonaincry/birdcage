@@ -25,5 +25,10 @@ namespace Services
 
         public List<Order> GetOrderByUserIdOrPhone(string userId, string phoneNumber) 
             => orderRepository.GetOrderByUserIdOrPhone(userId, phoneNumber);
+
+        public List<Order> GetOrders()
+        {
+            return orderRepository.GetOrders();
+        }
     }
 }

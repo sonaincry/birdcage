@@ -27,6 +27,16 @@ public partial class AddUser : Form
         {
             bool isValid = true;
             User user = new User();
+            if (string.IsNullOrEmpty(txtFullname.Text.Trim()))
+            {
+                errorProvider1.SetError(txtFullname, "Required");
+                isValid = false;
+                return;
+            }
+            if (!isValidLength(txtFullname.Text.Trim()))
+            {
+                errorProvider1.SetError(txtFullname, "Must have at least 6 characters and maximum is 25!");
+            }
             if (string.IsNullOrEmpty(txtEmail.Text.Trim()))
             {
                 errorProvider1.SetError(txtEmail, "Required");
@@ -45,16 +55,7 @@ public partial class AddUser : Form
                 isValid = false;
                 return;
             }
-            if (string.IsNullOrEmpty(txtFullname.Text.Trim()))
-            {
-                errorProvider1.SetError(txtFullname, "Required");
-                isValid = false;
-                return;
-            }
-            if (!isValidLength(txtFullname.Text.Trim()))
-            {
-                errorProvider1.SetError(txtFullname, "Must have at least 6 characters and maximum is 25!");
-            }
+
             if (string.IsNullOrEmpty(txtPassword.Text.Trim()))
             {
                 errorProvider1.SetError(txtPassword, "Required");
@@ -80,6 +81,18 @@ public partial class AddUser : Form
             if (string.IsNullOrEmpty(txtAddress.Text.Trim()))
             {
                 errorProvider1.SetError(txtAddress, "Required");
+                isValid = false;
+                return;
+            }
+            if (string.IsNullOrEmpty(txtRole.Text.Trim()))
+            {
+                errorProvider1.SetError(txtRole, "Required");
+                isValid = false;
+                return;
+            }
+            if (!isValidStatus(int.Parse(txtRole.Text.Trim())))
+            {
+                errorProvider1.SetError(txtRole, "Required");
                 isValid = false;
                 return;
             }
@@ -134,5 +147,14 @@ public partial class AddUser : Form
         string regex = @"^0\d{9}$";
 
         return Regex.IsMatch(phone, regex);
+    }
+    private bool isValidStatus(int number)
+    {
+        return number >= 1 && number <= 3;
+    }
+
+    private void AddUser_Load(object sender, EventArgs e)
+    {
+
     }
 }

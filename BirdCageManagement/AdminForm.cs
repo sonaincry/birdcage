@@ -46,7 +46,15 @@ namespace BirdCageManagement
         private void AdminForm_Load(object sender, EventArgs e)
         {
             dgvProduct.DataSource = productService.GetProducts().Select(c => new { c.ProductId, c.Name, c.Price, c.Description, c.Status, c.Spoke }).ToList();
-            dgvUser.DataSource = userService.GetUsers().Select(u => new { u.UserId, u.Fullname, u.Email, u.Address, u.Phone, u.Role, u.CreatedDate }).ToList();
+            dgvUser.DataSource = userService.GetUsers().Where(u => u.Role == 2 || u.Role == 3 || u.Role == 1)
+                .Select(u => new { u.UserId, u.Fullname, u.Email, u.Address, u.Phone, u.Role, u.CreatedDate }).ToList();
+        }
+
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            var Rf = new RevenueForm();
+            Rf.Show();
         }
     }
 }

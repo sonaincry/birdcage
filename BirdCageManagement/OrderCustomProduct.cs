@@ -61,151 +61,180 @@ public partial class OrderCustomProduct : Form
             }
             else
             {
+                bool isValid = true;
                 Product product = new Product();
-                product.Status = 0;
-                product.Spoke = int.Parse(txtSpoke.Text.Trim());
-                product.Price = 0;
-                product.Description = "";
-                product.Name = txtName.Text.Trim();
-
-                string maxProductId = productService.GetMaxProductId();
-
-                int currentNumber = int.Parse(maxProductId.Substring(1));
-                int newNumber = currentNumber + 1;
-
-                string newProductNumber = newNumber.ToString("D2");
-                product.ProductId = "P" + newProductNumber;
-                productService.AddProduct(product);
-
-
-
-                foreach (Material selectedMaterial in clMaterial.CheckedItems)
+                if (string.IsNullOrEmpty(txtName.Text.Trim()))
                 {
-                    var dbContext = new BirdCageShopContext();
-                    dbContext.Database.ExecuteSqlRaw(
-                        "INSERT INTO ProductMaterial (ProductID, MaterialID) VALUES (@ProductID, @MaterialID)",
-                        new SqlParameter("ProductID", product.ProductId),
-                        new SqlParameter("MaterialID", selectedMaterial.MaterialId)
-                    );
-                    selectedMaterials.Add(selectedMaterial);
+                    errorProvider1.SetError(txtName, "Required");
+                    isValid = false;
+                    return;
                 }
-                foreach (Accessory selectedAccessory in clAccessories.CheckedItems)
+                if (productService.IsNameExist(txtName.Text.Trim()))
                 {
-                    var dbContext = new BirdCageShopContext();
-                    dbContext.Database.ExecuteSqlRaw(
-                        "INSERT INTO ProductAccessory (ProductID, AccessoryID) VALUES (@ProductID, @AccessoryID)",
-                        new SqlParameter("ProductID", product.ProductId),
-                        new SqlParameter("AccessoryID", selectedAccessory.AccessoryId)
-                    );
-                    selectedAccessories.Add(selectedAccessory);
-
+                    errorProvider1.SetError(txtName, "This product already exist please select different name!");
+                    isValid = false;
+                    return;
                 }
-                double? totalPrice = 0;
-                foreach (Material material in selectedMaterials)
+                if (string.IsNullOrEmpty(txtSpoke.Text.Trim()))
                 {
-                    string materialId = material.MaterialId;
-                    double? mt = materialService.GetMaterialById(materialId).Price;
-                    totalMaterialPrice += mt;
+                    errorProvider1.SetError(txtSpoke, "Required");
+                    isValid = false;
+                    return;
                 }
-                foreach (Accessory accessory in selectedAccessories)
+                if (!IsValidSpoke(int.Parse(txtSpoke.Text.Trim())))
                 {
-                    string accessoryId = accessory.AccessoryId;
-                    double? ac = accessoryService.GetAccessoryById(accessoryId).Price;
-                    totalAccessoryPrice += ac;
+                    errorProvider1.SetError(txtSpoke, "Spoke must at least 51 and maxium 60");
+                    isValid = false;
+                    return;
                 }
-                totalSpokePrice = product.Spoke * 48000;
-                totalPrice = totalMaterialPrice + totalAccessoryPrice + totalSpokePrice;
-
-                productService.UpdatePrice(product, totalPrice);
-
-                //Save Order
-                string maxOrderId = orderService.GetMaxOrderId();
-                int currentOrderNumber = int.Parse(maxOrderId.Substring(2));
-                int newOrderNumber = currentNumber + 1;
-                string orderNumber = newOrderNumber.ToString("D2");
-
-                Order order = new Order();
-                order.Total = totalPrice;
-                order.Phone = UserInfo.Phone;
-                order.Address = UserInfo.Address;
-                order.CreatedDate = DateTime.Now;
-                order.Status = 0;
-                order.OrderId = "OD" + orderNumber;
-
-                if (UserInfo.UserId != null)
+                if (isValid)
                 {
-                    order.UserId = UserInfo.UserId;
-                }
+                    product.Status = 0;
+                    product.Spoke = int.Parse(txtSpoke.Text.Trim());
+                    product.Price = 0;
+                    product.Description = "";
+                    product.Name = txtName.Text.Trim();
 
-                string maxOrderDetailId = orderDetailService.GetMaxOrderDetailId();
-                int cNumber = int.Parse(maxOrderDetailId.Substring(3));
-                int newDTNumber = cNumber + 1;
-                string newOrderDetailNumber = newDTNumber.ToString("D2");
-                OrderDetail orderDetail = new OrderDetail
-                {
-                    OrderDetailId = "ODT" + newOrderDetailNumber,
-                    ProductId = product.ProductId,
-                    OrderId = order.OrderId,
-                    Quantity = 1,
-                    Price = (int?)product.Price,
-                };
+                    string maxProductId = productService.GetMaxProductId();
 
-                orderService.CreateNewOrder(order);
+                    int currentNumber = int.Parse(maxProductId.Substring(1));
+                    int newNumber = currentNumber + 1;
 
-                orderDetailService.CreateNewOrderDetail(orderDetail);
+                    string newProductNumber = newNumber.ToString("D2");
+                    product.ProductId = "P" + newProductNumber;
+                    productService.AddProduct(product);
 
-                Int32 totalDay;
-                if (selectedAccessories.Count == 0)
-                {
-                    if (selectedMaterials.Count == 1)
+
+
+                    foreach (Material selectedMaterial in clMaterial.CheckedItems)
                     {
-                        totalDay = 7;
-                        DateTime expectedDate = DateTime.Now.AddDays(totalDay);
-                        string showDate = expectedDate.ToString("dd-MM-yyyy");
-                        MessageBox.Show("Order Successfully, Your price is: " + totalPrice + " and expected date is: " + showDate);
+                        var dbContext = new BirdCageShopContext();
+                        dbContext.Database.ExecuteSqlRaw(
+                            "INSERT INTO ProductMaterial (ProductID, MaterialID) VALUES (@ProductID, @MaterialID)",
+                            new SqlParameter("ProductID", product.ProductId),
+                            new SqlParameter("MaterialID", selectedMaterial.MaterialId)
+                        );
+                        selectedMaterials.Add(selectedMaterial);
                     }
-                    if (selectedMaterials.Count == 2)
+                    foreach (Accessory selectedAccessory in clAccessories.CheckedItems)
                     {
-                        totalDay = 9;
-                        DateTime expectedDate = DateTime.Now.AddDays(totalDay);
-                        string showDate = expectedDate.ToString("dd-MM-yyyy");
-                        MessageBox.Show("Order Successfully, Your price is: " + totalPrice + " and expected date is: " + showDate);
+                        var dbContext = new BirdCageShopContext();
+                        dbContext.Database.ExecuteSqlRaw(
+                            "INSERT INTO ProductAccessory (ProductID, AccessoryID) VALUES (@ProductID, @AccessoryID)",
+                            new SqlParameter("ProductID", product.ProductId),
+                            new SqlParameter("AccessoryID", selectedAccessory.AccessoryId)
+                        );
+                        selectedAccessories.Add(selectedAccessory);
+
                     }
-                    if (selectedMaterials.Count == 3)
+                    double? totalPrice = 0;
+                    foreach (Material material in selectedMaterials)
                     {
-                        totalDay = 10;
-                        DateTime expectedDate = DateTime.Now.AddDays(totalDay);
-                        string showDate = expectedDate.ToString("dd-MM-yyyy");
-                        MessageBox.Show("Order Successfully, Your price is: " + totalPrice + " and expected date is: " + showDate);
+                        string materialId = material.MaterialId;
+                        double? mt = materialService.GetMaterialById(materialId).Price;
+                        totalMaterialPrice += mt;
                     }
-                }
-                else
-                {
-                    if (selectedMaterials.Count == 1)
+                    foreach (Accessory accessory in selectedAccessories)
                     {
-                        totalDay = 8;
-                        DateTime expectedDate = DateTime.Now.AddDays(totalDay);
-                        string showDate = expectedDate.ToString("dd-MM-yyyy");
-                        MessageBox.Show("Order Successfully, Your price is: " + totalPrice + " and expected date is: " + showDate);
+                        string accessoryId = accessory.AccessoryId;
+                        double? ac = accessoryService.GetAccessoryById(accessoryId).Price;
+                        totalAccessoryPrice += ac;
                     }
-                    if (selectedMaterials.Count == 2)
+                    totalSpokePrice = product.Spoke * 48000;
+                    totalPrice = totalMaterialPrice + totalAccessoryPrice + totalSpokePrice;
+
+                    productService.UpdatePrice(product, totalPrice);
+
+                    //Save Order
+                    string maxOrderId = orderService.GetMaxOrderId();
+                    int currentOrderNumber = int.Parse(maxOrderId.Substring(2));
+                    int newOrderNumber = currentNumber + 1;
+                    string orderNumber = newOrderNumber.ToString("D2");
+
+                    Order order = new Order();
+                    order.Total = totalPrice;
+                    order.Phone = UserInfo.Phone;
+                    order.Address = UserInfo.Address;
+                    order.CreatedDate = DateTime.Now;
+                    order.Status = 0;
+                    order.OrderId = "OD" + orderNumber;
+
+                    if (UserInfo.UserId != null)
                     {
-                        totalDay = 10;
-                        DateTime expectedDate = DateTime.Now.AddDays(totalDay);
-                        string showDate = expectedDate.ToString("dd-MM-yyyy");
-                        MessageBox.Show("Order Successfully, Your price is: " + totalPrice + " and expected date is: " + showDate);
+                        order.UserId = UserInfo.UserId;
                     }
-                    if (selectedMaterials.Count == 3)
+
+                    string maxOrderDetailId = orderDetailService.GetMaxOrderDetailId();
+                    int cNumber = int.Parse(maxOrderDetailId.Substring(3));
+                    int newDTNumber = cNumber + 1;
+                    string newOrderDetailNumber = newDTNumber.ToString("D2");
+                    OrderDetail orderDetail = new OrderDetail
                     {
-                        totalDay = 11;
-                        DateTime expectedDate = DateTime.Now.AddDays(totalDay);
-                        string showDate = expectedDate.ToString("dd-MM-yyyy");
-                        MessageBox.Show("Order Successfully, Your price is: " + totalPrice + " and expected date is: " + showDate);
+                        OrderDetailId = "ODT" + newOrderDetailNumber,
+                        ProductId = product.ProductId,
+                        OrderId = order.OrderId,
+                        Quantity = 1,
+                        Price = (int?)product.Price,
+                    };
+
+                    orderService.CreateNewOrder(order);
+
+                    orderDetailService.CreateNewOrderDetail(orderDetail);
+
+                    Int32 totalDay;
+                    if (selectedAccessories.Count == 0)
+                    {
+                        if (selectedMaterials.Count == 1)
+                        {
+                            totalDay = 7;
+                            DateTime expectedDate = DateTime.Now.AddDays(totalDay);
+                            string showDate = expectedDate.ToString("dd-MM-yyyy");
+                            MessageBox.Show("Order Successfully, Your price is: " + totalPrice + " and expected date is: " + showDate);
+                        }
+                        if (selectedMaterials.Count == 2)
+                        {
+                            totalDay = 9;
+                            DateTime expectedDate = DateTime.Now.AddDays(totalDay);
+                            string showDate = expectedDate.ToString("dd-MM-yyyy");
+                            MessageBox.Show("Order Successfully, Your price is: " + totalPrice + " and expected date is: " + showDate);
+                        }
+                        if (selectedMaterials.Count == 3)
+                        {
+                            totalDay = 10;
+                            DateTime expectedDate = DateTime.Now.AddDays(totalDay);
+                            string showDate = expectedDate.ToString("dd-MM-yyyy");
+                            MessageBox.Show("Order Successfully, Your price is: " + totalPrice + " and expected date is: " + showDate);
+                        }
                     }
+                    else
+                    {
+                        if (selectedMaterials.Count == 1)
+                        {
+                            totalDay = 8;
+                            DateTime expectedDate = DateTime.Now.AddDays(totalDay);
+                            string showDate = expectedDate.ToString("dd-MM-yyyy");
+                            MessageBox.Show("Order Successfully, Your price is: " + totalPrice + " and expected date is: " + showDate);
+                        }
+                        if (selectedMaterials.Count == 2)
+                        {
+                            totalDay = 10;
+                            DateTime expectedDate = DateTime.Now.AddDays(totalDay);
+                            string showDate = expectedDate.ToString("dd-MM-yyyy");
+                            MessageBox.Show("Order Successfully, Your price is: " + totalPrice + " and expected date is: " + showDate);
+                        }
+                        if (selectedMaterials.Count == 3)
+                        {
+                            totalDay = 11;
+                            DateTime expectedDate = DateTime.Now.AddDays(totalDay);
+                            string showDate = expectedDate.ToString("dd-MM-yyyy");
+                            MessageBox.Show("Order Successfully, Your price is: " + totalPrice + " and expected date is: " + showDate);
+                        }
+                    }
+
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
 
-                this.DialogResult = DialogResult.OK;
-                this.Close();
             }
         }
         catch (Exception ex)
@@ -224,5 +253,9 @@ public partial class OrderCustomProduct : Form
     private void clMaterial_SelectedIndexChanged(object sender, EventArgs e)
     {
 
+    }
+    private bool IsValidSpoke(int number)
+    {
+        return number >= 51 && number <= 60;
     }
 }

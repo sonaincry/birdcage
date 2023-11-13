@@ -12,6 +12,7 @@ namespace Repositories
         Order GetOrderById(string id);
         public void CreateNewOrder(Order order);
         string GetMaxOrderId();
+        List<Order> GetOrders();
         List<Order> GetOrderByUserIdOrPhone(string userId, string phoneNumber);
     }
 }

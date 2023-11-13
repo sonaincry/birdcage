@@ -36,47 +36,52 @@
             label3 = new Label();
             label4 = new Label();
             linkLabel1 = new LinkLabel();
+            linkLabel2 = new LinkLabel();
+            label5 = new Label();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(242, 153);
+            label1.Location = new Point(277, 204);
             label1.Name = "label1";
-            label1.Size = new Size(66, 15);
+            label1.Size = new Size(82, 20);
             label1.TabIndex = 0;
             label1.Text = "Username :";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(242, 204);
+            label2.Location = new Point(277, 272);
             label2.Name = "label2";
-            label2.Size = new Size(63, 15);
+            label2.Size = new Size(77, 20);
             label2.TabIndex = 1;
             label2.Text = "Password :";
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(337, 145);
+            txtUsername.Location = new Point(385, 193);
+            txtUsername.Margin = new Padding(3, 4, 3, 4);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(167, 23);
+            txtUsername.Size = new Size(190, 27);
             txtUsername.TabIndex = 2;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(337, 196);
+            txtPassword.Location = new Point(385, 261);
+            txtPassword.Margin = new Padding(3, 4, 3, 4);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
-            txtPassword.Size = new Size(167, 23);
+            txtPassword.Size = new Size(190, 27);
             txtPassword.TabIndex = 3;
             txtPassword.UseSystemPasswordChar = true;
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(375, 238);
+            btnLogin.Location = new Point(429, 317);
+            btnLogin.Margin = new Padding(3, 4, 3, 4);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(75, 23);
+            btnLogin.Size = new Size(86, 31);
             btnLogin.TabIndex = 4;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = true;
@@ -85,9 +90,9 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(375, 94);
+            label3.Location = new Point(429, 125);
             label3.Name = "label3";
-            label3.Size = new Size(51, 15);
+            label3.Size = new Size(65, 20);
             label3.TabIndex = 5;
             label3.Text = "Sign Up ";
             label3.Click += label3_Click;
@@ -95,28 +100,50 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(281, 277);
+            label4.Location = new Point(321, 369);
             label4.Name = "label4";
-            label4.Size = new Size(145, 15);
+            label4.Size = new Size(178, 20);
             label4.TabIndex = 6;
             label4.Text = "If you don't have account.";
             // 
             // linkLabel1
             // 
             linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(442, 277);
+            linkLabel1.Location = new Point(505, 369);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(78, 15);
+            linkLabel1.Size = new Size(100, 20);
             linkLabel1.TabIndex = 7;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Register here!";
             linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
+            // linkLabel2
+            // 
+            linkLabel2.AutoSize = true;
+            linkLabel2.Location = new Point(505, 411);
+            linkLabel2.Name = "linkLabel2";
+            linkLabel2.Size = new Size(46, 20);
+            linkLabel2.TabIndex = 8;
+            linkLabel2.TabStop = true;
+            linkLabel2.Text = "Guest";
+            linkLabel2.LinkClicked += linkLabel2_LinkClicked;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(321, 411);
+            label5.Name = "label5";
+            label5.Size = new Size(165, 20);
+            label5.TabIndex = 9;
+            label5.Text = "Shopping without login";
+            // 
             // LoginForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
+            Controls.Add(label5);
+            Controls.Add(linkLabel2);
             Controls.Add(linkLabel1);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -125,6 +152,7 @@
             Controls.Add(txtUsername);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "LoginForm";
             Text = "Login Form";
             Load += LoginForm_Load;
@@ -142,5 +170,7 @@
         private Label label3;
         private Label label4;
         private LinkLabel linkLabel1;
+        private LinkLabel linkLabel2;
+        private Label label5;
     }
 }
