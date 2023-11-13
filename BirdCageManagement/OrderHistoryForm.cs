@@ -29,5 +29,10 @@ namespace BirdCageManagement
                 .Select(o => new { o.OrderId, o.Total, o.Phone, o.Address }).ToList();
             dgvOrders.DataSource = source;
         }
+
+        private void dgvOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -23,11 +23,16 @@ public partial class UserManagement : Form
 
     private void UserManagement_Load(object sender, EventArgs e)
     {
-        dgvUser.DataSource = userService.GetUsers().Select(u => new { u.UserId, u.Fullname, u.Email, u.Address, u.Phone, u.Role, u.CreatedDate }).ToList();
+        dgvUser.DataSource = userService.GetUsers().Where(u=>u.Role == 2 || u.Role == 3 || u.Role == 1)
+            .Select(u => new { u.UserId, u.Fullname, u.Email, u.Address, u.Phone, u.Role, u.CreatedDate }).ToList();
     }
 
     private void dgvUser_CellClick(object sender, DataGridViewCellEventArgs e)
     {
+        txtUserID.Enabled = false;
+        txtEmail.Enabled = false;
+        txtPhone.Enabled = false;
+
         txtUserID.Text = dgvUser.CurrentRow.Cells[0].Value.ToString();
         txtFullname.Text = dgvUser.CurrentRow.Cells[1].Value.ToString();
         txtEmail.Text = dgvUser.CurrentRow.Cells[2].Value.ToString();
@@ -54,18 +59,6 @@ public partial class UserManagement : Form
                 isValid = false;
                 return;
             }
-            if (!IsValidEmail(txtEmail.Text.Trim()))
-            {
-                errorProvider1.SetError(txtEmail, "Invalid email");
-                isValid = false;
-                return;
-            }
-            if (userService.IsEmailExist(txtEmail.Text.Trim()))
-            {
-                errorProvider1.SetError(txtEmail, "Email already exist! Please try something else");
-                isValid = false;
-                return;
-            }
             if (string.IsNullOrEmpty(txtFullname.Text.Trim()))
             {
                 errorProvider1.SetError(txtFullname, "Required");
@@ -79,18 +72,6 @@ public partial class UserManagement : Form
             if (string.IsNullOrEmpty(txtPhone.Text.Trim()))
             {
                 errorProvider1.SetError(txtPhone, "Required");
-                isValid = false;
-                return;
-            }
-            if (userService.isValidPhone(txtPhone.Text.Trim()))
-            {
-                errorProvider1.SetError(txtPhone, "Phone number is already exist. Please try with another phone number");
-                isValid = false;
-                return;
-            }
-            if (!isValidPhone((txtPhone.Text.Trim())))
-            {
-                errorProvider1.SetError(txtPhone, "Invalid phone number!");
                 isValid = false;
                 return;
             }

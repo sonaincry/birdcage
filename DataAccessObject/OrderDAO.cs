@@ -88,5 +88,17 @@ namespace DataAccessObject
                 throw new Exception(ex.Message);
             }
         }
+        public List<Order> GetOrders()
+        {
+            try
+            {
+                var dbContext = new BirdCageShopContext();
+                return dbContext.Orders.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

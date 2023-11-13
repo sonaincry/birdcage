@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -28,63 +29,85 @@ namespace BirdCageManagement
         {
             try
             {
-                double total = 0;
-                foreach (var detail in Cart.CartDetails)
+                bool isValid = false;
+                if (string.IsNullOrEmpty(txtPhoneNumber.Text.Trim()))
                 {
-                    total += detail.SumPrice;
+                    errorProvider1.SetError(txtPhoneNumber, "Required");
+                    isValid = false;
+                    return;
                 }
-                string maxOrderId = _orderService.GetMaxOrderId();
-                int currentNumber = int.Parse(maxOrderId.Substring(2));
-                int newNumber = currentNumber + 1;
-                string newOrderNumber = newNumber.ToString("D2");
-
-                Order order = new Order();
-                order.Total = total;
-                order.Phone = txtPhoneNumber.Text.Trim();
-                order.Address = txtAddress.Text.Trim();
-                order.CreatedDate = DateTime.Now;
-                order.Status = 0;
-                order.OrderId = "OD" + newOrderNumber;
-
-                if (UserInfo.UserId != null)
+                if (!isValidPhone((txtPhoneNumber.Text.Trim())))
                 {
-                    order.UserId = UserInfo.UserId;
+                    errorProvider1.SetError(txtPhoneNumber, "Invalid phone number!");
+                    isValid = false;
+                    return;
                 }
-
-                List<OrderDetail> details = new List<OrderDetail>();
-
-                foreach (var detail in Cart.CartDetails)
+                if (string.IsNullOrEmpty(txtAddress.Text.Trim()))
                 {
-                    string maxOrderDetailId = _orderDetailService.GetMaxOrderDetailId();
-                    int cNumber = int.Parse(maxOrderDetailId.Substring(3));
-                    int newDTNumber = cNumber + 1;
-                    string newOrderDetailNumber = newDTNumber.ToString("D2");
-                    OrderDetail orderDetail = new OrderDetail
+                    errorProvider1.SetError(txtAddress, "Required");
+                    isValid = false;
+                    return;
+                }
+                if (isValid)
+                {
+                    double total = 0;
+                    foreach (var detail in Cart.CartDetails)
                     {
-                        OrderDetailId = "ODT" + newOrderDetailNumber,
-                        ProductId = detail.Product.ProductId,
-                        OrderId = order.OrderId,
-                        Quantity = detail.Quantity,
-                        Price = (int?)detail.SumPrice,
-                        //Product = detail.Product,
-                    };
-                    details.Add(orderDetail);
-                    //order.OrderDetails.Add(orderDetail);
-                    //_orderDetailService.CreateNewOrderDetail(orderDetail);
+                        total += detail.SumPrice;
+                    }
+                    string maxOrderId = _orderService.GetMaxOrderId();
+                    int currentNumber = int.Parse(maxOrderId.Substring(2));
+                    int newNumber = currentNumber + 1;
+                    string newOrderNumber = newNumber.ToString("D2");
+
+                    Order order = new Order();
+                    order.Total = total;
+                    order.Phone = txtPhoneNumber.Text.Trim();
+                    order.Address = txtAddress.Text.Trim();
+                    order.CreatedDate = DateTime.Now;
+                    order.Status = 0;
+                    order.OrderId = "OD" + newOrderNumber;
+
+                    if (UserInfo.UserId != null)
+                    {
+                        order.UserId = UserInfo.UserId;
+                    }
+
+                    List<OrderDetail> details = new List<OrderDetail>();
+
+                    foreach (var detail in Cart.CartDetails)
+                    {
+                        string maxOrderDetailId = _orderDetailService.GetMaxOrderDetailId();
+                        int cNumber = int.Parse(maxOrderDetailId.Substring(3));
+                        int newDTNumber = cNumber + 1;
+                        string newOrderDetailNumber = newDTNumber.ToString("D2");
+                        OrderDetail orderDetail = new OrderDetail
+                        {
+                            OrderDetailId = "ODT" + newOrderDetailNumber,
+                            ProductId = detail.Product.ProductId,
+                            OrderId = order.OrderId,
+                            Quantity = detail.Quantity,
+                            Price = (int?)detail.SumPrice,
+                            //Product = detail.Product,
+                        };
+                        details.Add(orderDetail);
+                        //order.OrderDetails.Add(orderDetail);
+                        //_orderDetailService.CreateNewOrderDetail(orderDetail);
+                    }
+                    //order.OrderDetails = null;
+
+                    _orderService.CreateNewOrder(order);
+
+                    foreach (var detail in details)
+                    {
+                        _orderDetailService.CreateNewOrderDetail(detail);
+                    }
+                    Cart.CartDetails = new List<CartDetail>();
+                    MessageBox.Show("Ordered Successfully! Please wait 2-3 days for the delivery.");
+
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
-                //order.OrderDetails = null;
-
-                _orderService.CreateNewOrder(order);
-
-                foreach (var detail in details)
-                {
-                    _orderDetailService.CreateNewOrderDetail(detail);
-                }
-                Cart.CartDetails = new List<CartDetail>();
-                MessageBox.Show("Ordered Successfully! Please wait 2-3 days for the delivery.");
-
-                this.DialogResult = DialogResult.OK;
-                this.Close();
             }
             catch (FormatException ex)
             {
@@ -123,16 +146,23 @@ namespace BirdCageManagement
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
-            } else
+            }
+            else
             {
                 if (Char.IsDigit(e.KeyChar))
                 {
-                    if (txtPhoneNumber.Text.Length > 9)
+                    if (txtPhoneNumber.Text.Length > 9 && isValidPhone(txtPhoneNumber.Text.Trim()))
                     {
                         e.Handled = true;
                     }
                 }
             }
+        }
+        private bool isValidPhone(string phone)
+        {
+            string regex = @"^0\d{9}$";
+
+            return Regex.IsMatch(phone, regex);
         }
     }
 }

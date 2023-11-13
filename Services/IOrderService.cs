@@ -13,5 +13,6 @@ namespace Services
         public void CreateNewOrder(Order order);
         string GetMaxOrderId();
         List<Order> GetOrderByUserIdOrPhone(string userId, string phoneNumber);
+        List<Order> GetOrders();
     }
 }

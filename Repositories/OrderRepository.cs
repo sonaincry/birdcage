@@ -16,5 +16,7 @@ namespace Repositories
 
         public List<Order> GetOrderByUserIdOrPhone(string userId, string phoneNumber) 
             => OrderDAO.Instance.GetOrderByUserIdOrPhone(userId, phoneNumber);
+
+        public List<Order> GetOrders()=>OrderDAO.Instance.GetOrders();
     }
 }

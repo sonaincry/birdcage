@@ -3178,11 +3178,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Son\\Desktop\\C#\\birdcage\\birdcage\\BussinessObject\\BussinessObject.csproj",
+      "projectUniqueName": "C:\\Users\\Son\\Desktop\\Desktop\\backup\\GroupProject_PRN211\\birdcage\\BussinessObject\\BussinessObject.csproj",
       "projectName": "BussinessObject",
-      "projectPath": "C:\\Users\\Son\\Desktop\\C#\\birdcage\\birdcage\\BussinessObject\\BussinessObject.csproj",
+      "projectPath": "C:\\Users\\Son\\Desktop\\Desktop\\backup\\GroupProject_PRN211\\birdcage\\BussinessObject\\BussinessObject.csproj",
       "packagesPath": "C:\\Users\\Son\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Son\\Desktop\\C#\\birdcage\\birdcage\\BussinessObject\\obj\\",
+      "outputPath": "C:\\Users\\Son\\Desktop\\Desktop\\backup\\GroupProject_PRN211\\birdcage\\BussinessObject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Son\\AppData\\Roaming\\NuGet\\NuGet.Config",

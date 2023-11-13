@@ -28,6 +28,7 @@ partial class OrderCustomProduct
     /// </summary>
     private void InitializeComponent()
     {
+        components = new System.ComponentModel.Container();
         label1 = new Label();
         label2 = new Label();
         txtSpoke = new TextBox();
@@ -37,6 +38,8 @@ partial class OrderCustomProduct
         txtName = new TextBox();
         btnOrder = new Button();
         linklabel1 = new LinkLabel();
+        errorProvider1 = new ErrorProvider(components);
+        ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
         SuspendLayout();
         // 
         // label1
@@ -44,71 +47,66 @@ partial class OrderCustomProduct
         label1.AutoSize = true;
         label1.Font = new Font("Microsoft Sans Serif", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point);
         label1.ForeColor = Color.Firebrick;
-        label1.Location = new Point(116, 34);
+        label1.Location = new Point(133, 45);
         label1.Name = "label1";
-        label1.Size = new Size(478, 39);
+        label1.Size = new Size(602, 52);
         label1.TabIndex = 0;
         label1.Text = "Customize Your Product Here";
         // 
         // label2
         // 
         label2.AutoSize = true;
-        label2.Location = new Point(178, 140);
+        label2.Location = new Point(203, 187);
         label2.Name = "label2";
-        label2.Size = new Size(42, 15);
+        label2.Size = new Size(53, 20);
         label2.TabIndex = 1;
         label2.Text = "Spoke:";
         // 
         // txtSpoke
         // 
-        txtSpoke.Location = new Point(269, 135);
-        txtSpoke.Margin = new Padding(3, 2, 3, 2);
+        txtSpoke.Location = new Point(307, 180);
         txtSpoke.Name = "txtSpoke";
-        txtSpoke.Size = new Size(187, 23);
+        txtSpoke.Size = new Size(213, 27);
         txtSpoke.TabIndex = 2;
         // 
         // clMaterial
         // 
         clMaterial.FormattingEnabled = true;
-        clMaterial.Location = new Point(144, 188);
-        clMaterial.Margin = new Padding(3, 2, 3, 2);
+        clMaterial.Location = new Point(165, 251);
         clMaterial.Name = "clMaterial";
-        clMaterial.Size = new Size(132, 76);
+        clMaterial.Size = new Size(150, 92);
         clMaterial.TabIndex = 3;
         clMaterial.SelectedIndexChanged += clMaterial_SelectedIndexChanged;
         // 
         // clAccessories
         // 
         clAccessories.FormattingEnabled = true;
-        clAccessories.Location = new Point(441, 188);
-        clAccessories.Margin = new Padding(3, 2, 3, 2);
+        clAccessories.Location = new Point(504, 251);
         clAccessories.Name = "clAccessories";
-        clAccessories.Size = new Size(132, 76);
+        clAccessories.Size = new Size(150, 92);
         clAccessories.TabIndex = 4;
         // 
         // label3
         // 
         label3.AutoSize = true;
-        label3.Location = new Point(178, 104);
+        label3.Location = new Point(203, 139);
         label3.Name = "label3";
-        label3.Size = new Size(42, 15);
+        label3.Size = new Size(52, 20);
         label3.TabIndex = 5;
         label3.Text = "Name:";
         // 
         // txtName
         // 
-        txtName.Location = new Point(269, 99);
-        txtName.Margin = new Padding(3, 2, 3, 2);
+        txtName.Location = new Point(307, 132);
         txtName.Name = "txtName";
-        txtName.Size = new Size(187, 23);
+        txtName.Size = new Size(213, 27);
         txtName.TabIndex = 6;
         // 
         // btnOrder
         // 
-        btnOrder.Location = new Point(304, 298);
-        btnOrder.Margin = new Padding(3, 2, 3, 2);
+        btnOrder.Location = new Point(347, 397);
         btnOrder.Name = "btnOrder";
-        btnOrder.Size = new Size(82, 22);
+        btnOrder.Size = new Size(94, 29);
         btnOrder.TabIndex = 7;
         btnOrder.Text = "Order";
         btnOrder.UseVisualStyleBackColor = true;
@@ -117,19 +115,23 @@ partial class OrderCustomProduct
         // linklabel1
         // 
         linklabel1.AutoSize = true;
-        linklabel1.Location = new Point(10, 7);
+        linklabel1.Location = new Point(11, 9);
         linklabel1.Name = "linklabel1";
-        linklabel1.Size = new Size(32, 15);
+        linklabel1.Size = new Size(40, 20);
         linklabel1.TabIndex = 8;
         linklabel1.TabStop = true;
         linklabel1.Text = "Back";
         linklabel1.LinkClicked += linklabel1_LinkClicked;
         // 
+        // errorProvider1
+        // 
+        errorProvider1.ContainerControl = this;
+        // 
         // OrderCustomProduct
         // 
-        AutoScaleDimensions = new SizeF(7F, 15F);
+        AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(700, 338);
+        ClientSize = new Size(800, 451);
         Controls.Add(linklabel1);
         Controls.Add(btnOrder);
         Controls.Add(txtName);
@@ -139,10 +141,10 @@ partial class OrderCustomProduct
         Controls.Add(txtSpoke);
         Controls.Add(label2);
         Controls.Add(label1);
-        Margin = new Padding(3, 2, 3, 2);
         Name = "OrderCustomProduct";
         Text = "OrderCustomProduct";
         Load += OrderCustomProduct_Load;
+        ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -158,4 +160,5 @@ partial class OrderCustomProduct
     private TextBox txtName;
     private Button btnOrder;
     private LinkLabel linklabel1;
+    private ErrorProvider errorProvider1;
 }

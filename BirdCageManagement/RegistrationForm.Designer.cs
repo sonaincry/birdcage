@@ -129,7 +129,7 @@ partial class RegistrationForm
         // 
         // btnRegister
         // 
-        btnRegister.Location = new Point(379, 339);
+        btnRegister.Location = new Point(379, 351);
         btnRegister.Name = "btnRegister";
         btnRegister.RightToLeft = RightToLeft.Yes;
         btnRegister.Size = new Size(94, 29);
@@ -141,7 +141,7 @@ partial class RegistrationForm
         // label6
         // 
         label6.AutoSize = true;
-        label6.Location = new Point(234, 381);
+        label6.Location = new Point(246, 393);
         label6.Name = "label6";
         label6.Size = new Size(178, 20);
         label6.TabIndex = 11;
@@ -150,7 +150,7 @@ partial class RegistrationForm
         // linkLabel1
         // 
         linkLabel1.AutoSize = true;
-        linkLabel1.Location = new Point(418, 381);
+        linkLabel1.Location = new Point(430, 393);
         linkLabel1.Name = "linkLabel1";
         linkLabel1.Size = new Size(91, 20);
         linkLabel1.TabIndex = 12;
